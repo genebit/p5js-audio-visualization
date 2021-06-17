@@ -1,6 +1,11 @@
-html, body {
-  margin: 0;
-  padding: 0;
+html {
+  background-color: #262626;
+}
+
+body {
+  margin: auto;
+  width: 80%;
+  padding-top: 5%;
 }
 
 canvas {
