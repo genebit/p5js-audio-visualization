@@ -1,21 +1,22 @@
-
-let microphone;
+let mic;
 
 function setup() {
-  createCanvas(500, 500);
-  frameRate(24);
+  createCanvas(300, 500);
 
-  microphone = new p5.AudioIn();
-  microphone.start();
+  mic = new p5.AudioIn();
+  mic.start();
 }
 
 function draw() {
-  background('255');
-
-  let volume = microphone.getLevel();
+  background(26);
+  let volume = mic.getLevel();
+  // console.log(volume);
+  let volumeHeight = map(volume, -0.4, 1, height, 0);
   
-  fill(26);
-  strokeWeight(5);
-  let h = map(volume, -0.4, 1, height, 0);
-  line(width/2, 350, width/2, h);
+  // Draw the Line
+  fill(255);
+  stroke(255);
+  strokeWeight(10);
+  line(width/2, 400, width/2, volumeHeight)
+
 }
