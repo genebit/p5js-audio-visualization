@@ -1,34 +1,32 @@
 
-// function setup() {
-//     createCanvas(400, 400);
-// }
-
-// function draw() {
-//     background(26);
-
-//     stroke(255);
-//     strokeWeight(5);
-//     for (var i = 0; i <= 10; i++) {
-//         line(i * 50, height, i * 50, height/2);
-//     }
-// }
-
-let mic;
-
- function setup(){
-  let cnv = createCanvas(100, 100);
-  cnv.mousePressed(userStartAudio);
-  textAlign(CENTER);
-  mic = new p5.AudioIn();
-  mic.start();
+// Drawing a grid
+function setup() {
+  createCanvas(400, 400);
 }
 
-function draw(){
-  background(0);
-  fill(255);
-  text('Volume', width/2, 20);
+function draw() {
+  background(26);
 
-  micLevel = mic.getLevel();
-  let y = height - micLevel * height;
-  ellipse(width/2, y, 10, 10);
+  stroke(255);
+  // strokeWeight(5);
+
+  beginShape();
+  endShape();
+}
+
+function drawGrid() {
+  let column = height / 5;
+  let row = width / 5;
+
+  for (let x = 0; x < width; x += row)
+  {
+    for (let y = 0; y < height; y += column)
+    {
+      // horizontal
+      line(0, y, width, y);
+
+      // vertical
+      line(x, 0, x, height);
+    }
+  }
 }
