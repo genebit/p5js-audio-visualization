@@ -3,5 +3,5 @@
     "*.js",
     "libraries/*.js",
     "c:\\Users\\Gene\\.vscode\\extensions\\samplavigne.p5-vscode-1.2.7\\p5types\\global.d.ts"
-  ]
+, "js/test.js", "js/gettingVolume.js", "js/displayingSpectrum.js"  ]
 }

@@ -2,7 +2,7 @@ let mic;
 
 function setup() {
   createCanvas(300, 500);
-
+  
   mic = new p5.AudioIn();
   mic.start();
 }
@@ -10,7 +10,8 @@ function setup() {
 function draw() {
   background(26);
   let volume = mic.getLevel();
-  // console.log(volume);
+  console.log('Volume:', volume);
+
   let volumeHeight = map(volume, -0.4, 1, height, 0);
   
   // Draw the Line
