@@ -1,25 +1,51 @@
 
-let microphone;
-let canvas;
+var canvas;
+var fft;
+const bands = 128;
+const smoothing = 0.7;
+
+var microphone;
+
+let song;
 
 function setup() {
-    canvas = createCanvas(500, 500);
-
+    canvas = createCanvas(windowWidth, 400);
+    canvas.parent("#sketch");
+    
     microphone = new p5.AudioIn();
     microphone.start();
-    background(200);
+    getAudioContext().resume();
+
+    // Sound Setup
+    song = loadSound("./sound/kokeko🐔.mp3");
+
+    // FFT Setup
+    fft = new p5.FFT(smoothing, bands);
+    fft.setInput(microphone);
 }
 
-var brushColor;
+var distance = 2; 
 
 function draw() {
-    // background(200);
-    // let volume = microphone.getLevel();
-    // ellipse(canvas.width/2, canvas.height/2, volume*1000, volume*1000);
+    background(26);
+    
+    let spectrum = fft.analyze();
+    let position = height / 2;
+    
+    fill("#Ed4E4E");
+    noStroke();
 
-    if (mouseIsPressed) {
-        stroke(0);
-        strokeWeight(5);
-        line(mouseX, mouseY, pmouseX, pmouseY);
+    for (let i = 0; i < spectrum.length; i++) {
+        let x = map(i, 0, spectrum.length, 0, width);
+        let bandHeight = -height + map(spectrum[i], 0, 255, height, 0);
+        // rect(x * 2, height-20, 5, bandHeight);
+        ellipse(x * 1.5, position, 100, bandHeight);
     }
+}
+
+function toggleSong() {
+    if (song.isPlaying())
+        song.stop();
+    else
+        song.play();
 }
