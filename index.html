@@ -1,19 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z8NJKRLT5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-2Z8NJKRLT5');
+    </script> -->
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Visualization</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
 
     <link rel="stylesheet" href="styles.css">
     <script src="sketch.js"></script>
+    <script src="micpermission.js"></script>
 </head>
+
 <body>
-    
+    <div class="row">
+        <div class="col-md-12" id="sketch"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h2>Audio Visualizer</h2>
+                <p>Built using the P5JS Library</p>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="m-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Visualize a Song</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input class="form-control" type="file" id="upload">
+                        </div>
+                        <div class="col-md-12" style="margin-top: 20px;">
+                            <audio id="audio" style="width: 100%;">
+                                <source src="" id="src"/>
+                            </audio>
+                            <button class="btn btn-success" style="border-radius: 50%;" onclick="play()"><i class="fa fa-play" aria-hidden="true"></i></button>
+                            <button class="btn btn-success" style="border-radius: 50%;" onclick="pause()"><i class="fa fa-pause" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="m-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Use Microphone</h3>
+                            <p>Please make sure to allow the use of microphone in this website to work.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-success" style="width: 100%;" onclick="getLocalStream()">Enable Microphone</button>
+                        </div>
+                        <div class="col-md-4 offset-2">
+                            <button class="btn btn-success" style="border-radius: 50%;" onclick="toggleMic()"><i class="fa fa-play" aria-hidden="true"></i></button>
+                            <button class="btn btn-success" style="border-radius: 50%;" onclick="pauseMic()"><i class="fa fa-pause" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h2>Customization</h2>
+                <p>Design your own audio spectrum!</p>
+            </div>
+            <hr/>
+            <div class="card">
+                <div class="m-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Spectrum Style</p>   
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="spectrum-style" style="width: 200px;">
+                                        <option value="Intestine">Intestine</option>
+                                        <option value="Rectangle">Rectangle</option>
+                                        <option value="Ellipse">Ellipse</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Background Color</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <input id="backg-color" type="color" value="#FFFFFF" style="padding: 2px 2px 2px 2px; width: 200px; border-radius: 5px;">
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Spectrum Color</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <input id="spectrum-color" type="color" value="#1A1A1A" style="padding: 2px 2px 2px 2px; width: 200px; border-radius: 5px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Shape Distance</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <input id="" type="range" min="1" max="10" step="0.1" value="1" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Smoothing</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="range" min="0" max="1" step="0.05" value="0.5" style="width: 100%;">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Number of Bands</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="style" style="width: 100px;">
+                                        <option value="16">16</option>
+                                        <option value="32">32</option>
+                                        <option value="64">64</option>
+                                        <option value="128">128</option>
+                                        <option value="256">256</option>
+                                        <option value="512">512</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Enable this script to make canvas sticky -->
+    <!-- <script>
+        window.onscroll = function() { scrollHandler() };
+        
+        var header = document.getElementById("sketch");
+        var sticky = header.offsetTop;
+        
+        function scrollHandler() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
