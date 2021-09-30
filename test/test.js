@@ -1,11 +1,5 @@
 
-var soundfile;
-
-var song;
-
-function preload() {
-    song = loadSound(soundfile);
-}
+var sound;
 
 function draw() {
     document.getElementById("upload").addEventListener("change", handleFiles, false);
@@ -16,14 +10,6 @@ function handleFiles(event) {
     $("#src").attr("src", URL.createObjectURL(files[0]));
     document.getElementById("audio").load();
 
-    soundfile = document.getElementById("src").getAttribute("src");
+    document.getElementById("src").createAtrribute("download");
 }
 
-function toggleMusic() {
-    // if (song.isPlaying()) {
-    //     song.stop();
-    // } else {
-    //     song.play();
-    // }
-    console.log(soundfile)
-}
