@@ -49,48 +49,28 @@
     </div>
     <hr/>
     <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="m-4">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3>Visualize a Song</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input class="form-control" type="file" id="upload">
-                        </div>
-                        <div class="col-md-12" style="margin-top: 20px;">
-                            <audio id="audio" style="width: 100%;">
-                                <source src="" id="src"/>
-                            </audio>
-                            <button class="btn btn-success" style="border-radius: 50%;" onclick="play()"><i class="fa fa-play" aria-hidden="true"></i></button>
-                            <button class="btn btn-success" style="border-radius: 50%;" onclick="pause()"><i class="fa fa-pause" aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="card">
                 <div class="m-4">
                     <div class="row">
                         <div class="col-md-12">
                             <h3>Use Microphone</h3>
-                            <p>Please make sure to allow the use of microphone in this website to work.</p>
+                            <p class="text-center">Please make sure to allow the use of microphone in this website to work.</p>
+                        </div>
+                        <div class="col-sm-12"><p></p></div>
+                        <div class="col-md-6">
+                            <button class="btn btn-success" style="width: 80%;" onclick="getLocalStream()">Enable Microphone</button>
                         </div>
                         <div class="col-md-6">
-                            <button class="btn btn-success" style="width: 100%;" onclick="getLocalStream()">Enable Microphone</button>
-                        </div>
-                        <div class="col-md-4 offset-2">
-                            <button class="btn btn-success" style="border-radius: 50%;" onclick="toggleMic()"><i class="fa fa-play" aria-hidden="true"></i></button>
-                            <button class="btn btn-success" style="border-radius: 50%;" onclick="pauseMic()"><i class="fa fa-pause" aria-hidden="true"></i></button>
+                            <button class="btn btn-success" style="border-radius: 50%; float: right; margin-right: 10px;" onclick="pauseMic()"><i class="fa fa-pause" aria-hidden="true"></i></button>
+                            <button class="btn btn-success" style="border-radius: 50%; float: right; margin-right: 10px;" onclick="toggleMic()"><i class="fa fa-play" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-3"></div>
     </div>
     <br><br>
     <div class="row">
@@ -99,11 +79,16 @@
                 <h2>Customization</h2>
                 <p>Design your own audio spectrum!</p>
             </div>
-            <hr/>
+        </div>
+    </div>
+        <hr/>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
             <div class="card">
                 <div class="m-4">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
                                     <p>Spectrum Style</p>   
@@ -133,9 +118,7 @@
                                     <input id="spectrum-color" type="color" value="#1A1A1A" style="padding: 2px 2px 2px 2px; width: 200px; border-radius: 5px;">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-4">
                                     <p>Shape Distance</p>
                                 </div>
@@ -165,13 +148,14 @@
                                         <option value="512">512</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+        <div class="col-md-3"></div>
     <!-- Enable this script to make canvas sticky -->
     <!-- <script>
         window.onscroll = function() { scrollHandler() };

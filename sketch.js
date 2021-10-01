@@ -11,7 +11,7 @@ function setup() {
     canvas = createCanvas(windowWidth, 400);
     canvas.parent("#sketch");
     frameRate(60);
-
+ 
     microphone = new p5.AudioIn();
     microphone.start();
     getAudioContext().resume();
@@ -36,8 +36,10 @@ function draw() {
     for (let i = 0; i < spectrum.length; i++) {
         let x = map(i, 0, spectrum.length, 0, width);
         let bandHeight = -height + map(spectrum[i], 0, 255, height, 0);
+        
         ellipse(x * 1.5, position, 100, bandHeight);
-        // rect(x * 2, height-20, 5, bandHeight);
+        
+        // rect(x * 2, height-20, 15, bandHeight);
     }
 }
 
