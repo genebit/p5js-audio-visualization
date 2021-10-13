@@ -25,7 +25,7 @@
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.js"></script>
@@ -36,6 +36,37 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">Genebit.Github.io</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="https://genebit.github.io/home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://genebit.github.io/pages/about.html">About Me</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://genebit.github.io/pages/blog.html">Blog</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" aria-current="page" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Project
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="https://genebit.github.io/myASCII/">MyASCII</a></li>
+                            <li><a class="dropdown-item" href="https://genebit.github.io/p5js-audio-visulization/">Audio Visualization</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">My Configuration</a></li>
+                            <li><a class="dropdown-item" href="#">Pong Game</a></li> -->
+                            <li><a class="dropdown-item" href="https://genebit.github.io/p5js-double-pendulum/">Double Pendulum</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">Rock Paper Scissor</a></li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="row">
         <div class="col-md-12" id="sketch"></div>
     </div>
