@@ -35,11 +35,26 @@ function draw() {
 
     for (let i = 0; i < spectrum.length; i++) {
         let x = map(i, 0, spectrum.length, 0, width);
-        let bandHeight = -height + map(spectrum[i], 0, 255, height, 0);
-        
-        ellipse(x * 1.5, position, 100, bandHeight);
-        
-        // rect(x * 2, height-20, 15, bandHeight);
+        let bandHeight = -height + map(spectrum[i], 0, 255, 500, 0);
+        selectStyle($("#spectrum-style").val(), x, position, bandHeight);
+    }
+}
+function selectStyle(selected, x, pos, bandheight) {
+    switch (selected) {
+        case "Intestine":
+            ellipse(x * distance, pos, 200, bandheight);
+            break;
+    
+        case "Rectangle":
+            rect(x * distance, height-20, 15, bandheight);
+            break;
+
+        case "Hypno":
+            noFill();
+            stroke($("#spectrum-color").val());
+            strokeWeight(3);
+            ellipse(width/2, height/2, bandheight, bandheight);
+            break;
     }
 }
 

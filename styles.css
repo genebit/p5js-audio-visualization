@@ -23,6 +23,11 @@ p {
     font-weight: 500;
     color: rgb(50, 50, 50);
 }
+input[type="color"] {
+    padding: 2px 2px 2px 2px; 
+    width: 100%; 
+    border-radius: 5px;
+}
 .card {
     border-radius: 15px;
     margin-top: 20px;
