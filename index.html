@@ -38,7 +38,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand">Genebit.Github.io</a>
+            <a class="navbar-brand btn btn-outline-dark" style="border-radius: 20px;">Genebit.Github.io</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -46,21 +46,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="https://genebit.github.io/home.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://genebit.github.io/pages/about.html">About Me</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://genebit.github.io/pages/blog.html">Blog</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                            href="https://genebit.github.io/home.html">Home</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" aria-current="page" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Project
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="https://genebit.github.io/myASCII/">MyASCII</a></li>
-                            <li><a class="dropdown-item" href="https://genebit.github.io/p5js-audio-visulization/">Audio Visualization</a></li>
-                            <!-- <li><a class="dropdown-item" href="#">My Configuration</a></li>
-                            <li><a class="dropdown-item" href="#">Pong Game</a></li> -->
-                            <li><a class="dropdown-item" href="https://genebit.github.io/p5js-double-pendulum/">Double Pendulum</a></li>
-                            <!-- <li><a class="dropdown-item" href="#">Rock Paper Scissor</a></li> -->
+                            <li><a class="dropdown-item" href="#https://genebit.github.io/p5js-audio-visualization">Audio Visualization</a></li>
+                            <li><a class="dropdown-item" href="https://genebit.github.io/p5js-double-pendulum/">Double
+                                    Pendulum</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -162,21 +161,6 @@
         </div>
     </div>
         <div class="col-md-3"></div>
-    <!-- Enable this script to make canvas sticky -->
-    <!-- <script>
-        window.onscroll = function() { scrollHandler() };
-        
-        var header = document.getElementById("sketch");
-        var sticky = header.offsetTop;
-        
-        function scrollHandler() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
-        }
-    </script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

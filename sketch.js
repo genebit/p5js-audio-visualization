@@ -14,8 +14,7 @@ function setup() {
  
     microphone = new p5.AudioIn();
     microphone.start();
-    getAudioContext().resume();
-
+    
     // FFT Setup
     fft = new p5.FFT(smoothing, bands);
     fft.setInput(microphone);
@@ -24,15 +23,15 @@ function setup() {
 var distance = 2; 
 
 function draw() {
+    getAudioContext().resume();
     background($("#backg-color").val());
     
     let spectrum = fft.analyze();
     let position = height / 2;
     
-    // "#Ed4E4E"
     fill($("#spectrum-color").val());
     noStroke();
-
+    
     for (let i = 0; i < spectrum.length; i++) {
         let x = map(i, 0, spectrum.length, 0, width);
         let bandHeight = -height + map(spectrum[i], 0, 255, 500, 0);
@@ -60,3 +59,7 @@ function selectStyle(selected, x, pos, bandheight) {
 
 var toggleMic = function() { microphone.start(); }
 var pauseMic = function() { microphone.stop(); }
+
+function touchStarted() {
+    getAudioContext().resume();
+}
