@@ -1,51 +1,92 @@
-* {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
-} 
-h2 {
-    font-size: 50px;
-    font-weight: 700;
-} 
-h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: rgb(40, 40, 40);
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
+:root {
+	--dark: #212529;
+	--white: #e4e4e4;
+	--orange: #ff7316;
+	--red: #e64c41;
+	--blue-green: #7c978e;
+
+	--font: "JetBrains Mono", sans-serif;
+	--default-font-size: 500;
+
+	--box-shadow-param: 0px 0px 8px 0px;
+	--left-right-margin: 0px 10px;
 }
-h6 {
-    font-size: 18px;
-    font-weight: 600;
-    color: rgb(40, 40, 40);
+* {
+	font-family: var(--font);
+	font-weight: var(--default-font-size);
+	margin: 0;
+	padding: 0;
+}
+h1,
+h2,
+h3 {
+	margin: 20px 0px;
+	color: var(--white);
+	font-weight: 700;
 }
 p {
-    font-size: 15px;
-    font-weight: 500;
-    color: rgb(50, 50, 50);
-}
-input[type="color"] {
-    padding: 2px 2px 2px 2px; 
-    width: 100%; 
-    border-radius: 5px;
+	color: var(--white);
 }
 body {
-    background-color: #ffffff;
-    margin-left: 10px;
-    margin-right: 10px;
+	background-color: var(--dark);
+	margin: var(--left-right-margin);
 }
-a {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
+footer {
+	display: block;
+	bottom: 0;
+	margin: 30px 0px;
+	padding: 0;
+	width: 100%;
 }
+footer p {
+	color: var(--white);
+	margin: 20px 20px;
+}
+/* NAVBAR */
 nav {
-    color: rgb(185, 185, 185);
-    box-shadow: 0px 0px 8px 0px;
-    z-index: 1;
+	color: black;
+	box-shadow: var(--box-shadow-param);
+	z-index: 1;
+}
+nav .navbar-nav .nav-link,
+.navbar-brand {
+	font-family: var(--font);
+	color: var(--white) !important;
+	padding: 5px 20px;
+}
+nav a.navbar-brand.btn.btn-outline-light {
+	border-radius: 12px !important;
+}
+nav a.navbar-brand.btn.btn-outline-light:hover {
+	color: var(--dark) !important;
+}
+nav button.navbar-toggler,
+nav button span i {
+	border: none;
+	border-radius: 30px;
+	font-size: 20px;
+	color: rgba(var(--white), 1);
+	transition: background-color 0.5s;
+}
+nav button.navbar-toggler:focus {
+	box-shadow: none;
+}
+input {
+	width: 100%;
+}
+.btn.btn-success {
+	background-color: var(--blue-green);
 }
 .card {
-    border-radius: 15px;
-    margin-top: 20px;
-    font-family: 'Roboto Mono' !important;;
-    color: rgb(194, 194, 194);
-    box-shadow: 0px 5px 10px 0px;
+	border-radius: 15px;
+	margin-top: 20px;
+	color: black;
+	background-color: var(--white);
+	box-shadow: 0px 5px 10px 0px;
+}
+.card h3,
+.card p,
+.card button {
+	color: var(--dark);
 }
