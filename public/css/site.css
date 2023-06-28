@@ -1,0 +1,9 @@
+#sketchContainer {
+	position: relative;
+	width: 100%;
+	height: 50vh;
+}
+
+.spacer {
+	padding: 3rem 0;
+}

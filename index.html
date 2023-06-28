@@ -1,158 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z8NJKRLT5"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag("js", new Date());
-
-			gtag("config", "G-2Z8NJKRLT5");
-		</script>
-
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Audio Visualization</title>
+		<title>GeneBeat - Audio Visualization</title>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<!-- site styles -->
+		<link rel="stylesheet" href="public/vendors/bs-coreui/bs-coreui.min.css" />
+		<link rel="stylesheet" href="public/css/site.css" />
 
-		<!-- Reference to Fontawesome -->
-		<link href="resources/fontawesome_v5.15/css/fontawesome.css" rel="stylesheet" />
-		<link href="resources/fontawesome_v5.15/css/brands.css" rel="stylesheet" />
-		<link href="resources/fontawesome_v5.15/css/solid.css" rel="stylesheet" />
+		<!-- p5js library -->
+		<script src="public/vendors/p5js/p5.min.js"></script>
+		<script src="public/vendors/p5js/p5.sound.min.js"></script>
 
-		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!--  -->
+		<script src="public/vendors/jquery/jquery.min.js"></script>
+		<script defer src="public/vendors/bs-coreui/bs-coreui.min.js"></script>
 
-		<script src="libraries/p5.min.js"></script>
-		<script src="libraries/p5.sound.js"></script>
-
-		<link rel="stylesheet" href="styles.css" />
-		<script src="sketch.js"></script>
-		<script src="micpermission.js"></script>
+		<!--  -->
+		<script defer src="public/js/sketch.js"></script>
+		<script defer src="public/js/micpermission.js"></script>
 	</head>
 
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand btn btn-outline-light" style="border-radius: 20px">Genebit.Github.io</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="menu-bar">
-						<i class="fas fa-bars"></i>
-					</span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<hr style="color: white" />
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="https://genebit.github.io/home.html">Home</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Project </a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li>
-									<a class="dropdown-item" href="https://genebit.github.io/myASCII/">MyASCII</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="https://genebit.github.io/p5js-audio-visualization/">Audio Visualization</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="https://genebit.github.io/p5js-double-pendulum/">Double Pendulum</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
+		<div class="container">
+			<div id="sketchContainer"></div>
+			<div class="spacer"></div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="text-center">
+						<h2>Audio Visualizer</h2>
+						<p>Built using the P5JS Library</p>
+					</div>
 				</div>
 			</div>
-		</nav>
-		<div class="row">
-			<div class="col-md-12" id="sketch"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="text-center">
-					<h2>Audio Visualizer</h2>
-					<p>Built using the P5JS Library</p>
-				</div>
-			</div>
-		</div>
-		<hr />
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="card">
-					<div class="m-4">
-						<div class="row">
+			<hr />
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card shadow border border-1">
+						<div class="card-body p-4">
 							<div class="col-md-12">
-								<h3>Use Microphone</h3>
-								<p class="text-center">Please make sure to allow the use of microphone in this website to work.</p>
+								<h3>Audio Source</h3>
+								<p>Please make sure to allow the use of microphone in this website to work. Pick an audio source to visualize.</p>
 							</div>
-							<div class="col-md-12">
-								<button class="btn btn-success" onclick="getLocalStream()">Enable Mic Access</button>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<a id="togglebtn" style="border-radius: 50%; font-size: 20px; cursor: pointer" onclick="pauseMic()"><i class="fa fa-pause" aria-hidden="true"></i></a>
-								<a id="togglebtn" style="border-radius: 50%; font-size: 20px; cursor: pointer" onclick="toggleMic()"><i class="fa fa-play" aria-hidden="true"></i></a>
+							<div class="col-md-12 d-flex flex-column gap-3">
+								<div class="d-flex gap-3">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="$('#audioFile, #audioControls').slideUp(300); getLocalStream()" checked />
+										<label class="form-check-label" for="flexRadioDefault1">Microphone</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="$('#audioFile, #audioControls').slideDown(300)" />
+										<label class="form-check-label" for="flexRadioDefault2">Audio File</label>
+									</div>
+								</div>
+								<input type="file" class="form-control w-100" name="" id="audioFile" style="display: none" />
+								<audio id="audioControls" controls class="w-100" style="display: none">
+									<source src="" type="audio/mp3" />
+									Your browser does not support the audio element.
+								</audio>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-3"></div>
-		</div>
-		<br /><br />
-		<div class="row">
-			<div class="col-md-12">
-				<div class="text-center">
-					<h2>Customization</h2>
-					<p>Design your own audio spectrum!</p>
-				</div>
-			</div>
-		</div>
-		<hr />
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="card">
-					<div class="m-4">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-4">
-										<p>Spectrum Style</p>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card shadow border border-1">
+								<div class="card-body p-4">
+									<h3>Customization</h3>
+									<p>Design your own audio spectrum!</p>
+									<div class="row">
+										<div class="col-md-4">
+											<p>Spectrum Style</p>
+										</div>
+										<div class="col-md-8">
+											<select class="form-select" id="spectrumStyle" style="width: 100%">
+												<option value="Rectangle">Rectangle</option>
+												<option value="Rectangle Thin">Rectangle Thin</option>
+												<option value="Hypno">Hypno</option>
+												<option value="Intestine">Intestine</option>
+												<option value="Mirror">Mirror</option>
+											</select>
+										</div>
 									</div>
-									<div class="col-md-8">
-										<select class="form-select" id="spectrum-style" style="width: 100%">
-											<option value="Hypno">Hypno</option>
-											<option value="Intestine">Intestine</option>
-											<option value="Rectangle">Rectangle</option>
-										</select>
+									<br />
+									<div class="row">
+										<div class="col-md-4">
+											<p>Background Color</p>
+										</div>
+										<div class="col-md-8">
+											<input id="backgColor" type="color" value="#ffffff" />
+										</div>
 									</div>
-								</div>
-								<br />
-								<div class="row">
-									<div class="col-md-4">
-										<p>Background Color</p>
-									</div>
-									<div class="col-md-8">
-										<input id="backg-color" type="color" value="#2a2e33" />
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-4">
-										<p>Spectrum Color</p>
-									</div>
-									<div class="col-md-8">
-										<input id="spectrum-color" type="color" value="#FFFFFF" />
+									<div class="row">
+										<div class="col-md-4">
+											<p>Spectrum Color</p>
+										</div>
+										<div class="col-md-8">
+											<input id="spectrumColor" type="color" value="#2a2e33" />
+										</div>
 									</div>
 								</div>
 							</div>
@@ -160,12 +108,11 @@
 					</div>
 				</div>
 			</div>
+			<div class="spacer"></div>
+			<footer>
+				<hr style="color: white; margin: 0" />
+				<p>&#169; GeneBit 2020</p>
+			</footer>
 		</div>
-		<footer>
-			<hr style="color: white; margin: 0" />
-			<p>Built by @Gene - 2020. <br />Hosted by Github Pages.</p>
-		</footer>
-		<div class="col-md-3"></div>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	</body>
 </html>
