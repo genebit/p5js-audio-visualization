@@ -26,9 +26,9 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#spectrumStyle").on("change", () => (spectrumStyle = $(this).val()));
-	$("#spectrumColor").on("input", () => (spectrumColor = $(this).val()));
-	$("#backgColor").on("input", () => (backgroundColor = $(this).val()));
+	$("#spectrumStyle").on("change", () => (spectrumStyle = $("#spectrumStyle").val()));
+	$("#spectrumColor").on("input", () => (spectrumColor = $("#spectrumColor").val()));
+	$("#backgColor").on("input", () => (backgroundColor = $("#backgColor").val()));
 
 	updateFreqBands();
 	updateFreqBandSmoothing();
