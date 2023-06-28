@@ -1,7 +1,11 @@
-let fft;
 let bands = 128;
 let smoothing = 0.8;
 let distance = 2;
+let spectrumStyle = $("#spectrumStyle").val();
+let spectrumColor = $("#spectrumColor").val();
+let backgroundColor = $("#backgColor").val();
+
+let fft;
 let microphone;
 let currentAudio;
 let canvas;
@@ -22,6 +26,10 @@ $(document).ready(function () {
 		}
 	});
 
+	$("#spectrumStyle").on("change", () => (spectrumStyle = $(this).val()));
+	$("#spectrumColor").on("input", () => (spectrumColor = $(this).val()));
+	$("#backgColor").on("input", () => (backgroundColor = $(this).val()));
+
 	updateFreqBands();
 	updateFreqBandSmoothing();
 });
@@ -39,23 +47,22 @@ function setup() {
 	// FFT Setup
 	fft = new p5.FFT(smoothing, bands);
 	fft.setInput(microphone);
-
-	getAudioContext().resume(); // Resume audio context once during setup
 }
 
 function draw() {
-	background($("#backgColor").val());
+	getAudioContext().resume(); // Resume audio context once during setup
+	background(backgroundColor);
 
 	let spectrum = fft.analyze();
 	let position = height / 2;
 
-	fill($("#spectrumColor").val());
+	fill(spectrumColor);
 	noStroke();
 
 	for (let i = 0; i < spectrum.length; i++) {
 		let x = map(i, 0, spectrum.length, 0, width);
 		let bandHeight = map(spectrum[i], 0, 255, 0, height / 2);
-		selectStyle($("#spectrumStyle").val(), x, position, bandHeight);
+		selectStyle(spectrumStyle, x, position, bandHeight);
 	}
 }
 
