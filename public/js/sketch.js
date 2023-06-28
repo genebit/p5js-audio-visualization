@@ -1,7 +1,7 @@
 let fft;
 let soundFile;
 
-let bands = 256; // 2 4 8 16 32 64 128 256 512
+let bands = 128;
 let smoothing = 0.8;
 let distance = 2;
 let microphone;
@@ -15,7 +15,12 @@ $(document).ready(function () {
 		// Update src attribute of audio element
 		var fileURL = URL.createObjectURL(file);
 		audio.src = fileURL;
+
+		setup();
 	});
+
+	updateFreqBands();
+	updateFreqBandSmoothing();
 });
 
 function setup() {
@@ -80,4 +85,28 @@ function selectStyle(selected, x, pos, bandheight) {
 			rect(rectX, bottomRectY, rectWidth, -bandheight, 50);
 			break;
 	}
+}
+
+function updateFreqBands() {
+	let $freqBandInput = $("#freqBands");
+	let $freqBandsLabel = $("#freqBandsLabel");
+
+	$freqBandInput.on("input", function () {
+		let b = [16, 32, 64, 128, 256, 512, 1024];
+
+		bands = parseInt(b[this.value]); // Update the bands value when the input changes
+		$freqBandsLabel.html(bands);
+		setup();
+	});
+}
+
+function updateFreqBandSmoothing() {
+	let $freqBandSmoothingInput = $("#freqBandSmoothing");
+	let $freqBandSmoothingLabel = $("#freqBandSmoothingLabel");
+
+	$freqBandSmoothingInput.on("input", function () {
+		smoothing = parseFloat(this.value);
+		$freqBandSmoothingLabel.html(smoothing);
+		setup();
+	});
 }

@@ -14,7 +14,7 @@
 		<script src="public/vendors/p5js/p5.min.js"></script>
 		<script src="public/vendors/p5js/p5.sound.min.js"></script>
 
-		<!--  -->
+		<!-- -->
 		<script src="public/vendors/jquery/jquery.min.js"></script>
 		<script defer src="public/vendors/bs-coreui/bs-coreui.min.js"></script>
 
@@ -71,7 +71,29 @@
 								<div class="card-body p-4">
 									<h3>Customization</h3>
 									<p>Design your own audio spectrum!</p>
-									<div class="row">
+									<div class="row my-2">
+										<div class="col-md-4">
+											<p>Frequency Bands</p>
+										</div>
+										<div class="col-md-8">
+											<div class="d-flex gap-3">
+												<input class="form-range" id="freqBands" type="range" min="0" max="6" step="1" value="4" />
+												<label id="freqBandsLabel" for="">128</label>
+											</div>
+										</div>
+									</div>
+									<div class="row my-2">
+										<div class="col-md-4">
+											<p>Smoothing</p>
+										</div>
+										<div class="col-md-8">
+											<div class="d-flex gap-3">
+												<input class="form-range" id="freqBandSmoothing" type="range" min="0" max="0.9" step="0.1" value="0" />
+												<label id="freqBandSmoothingLabel" for="">0</label>
+											</div>
+										</div>
+									</div>
+									<div class="row my-2">
 										<div class="col-md-4">
 											<p>Spectrum Style</p>
 										</div>
@@ -85,8 +107,7 @@
 											</select>
 										</div>
 									</div>
-									<br />
-									<div class="row">
+									<div class="row my-2">
 										<div class="col-md-4">
 											<p>Background Color</p>
 										</div>
@@ -94,7 +115,7 @@
 											<input id="backgColor" type="color" value="#ffffff" />
 										</div>
 									</div>
-									<div class="row">
+									<div class="row my-2">
 										<div class="col-md-4">
 											<p>Spectrum Color</p>
 										</div>
