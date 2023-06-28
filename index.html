@@ -30,7 +30,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="text-center">
-						<h2>Audio Visualizer</h2>
+						<h1 class="text-uppercase">Audio Visualizer</h1>
 						<p>Built using the P5JS Library</p>
 					</div>
 				</div>
@@ -41,13 +41,13 @@
 					<div class="card shadow border border-1 my-sm-2 my-md-0">
 						<div class="card-body p-4">
 							<div class="col-md-12">
-								<h3>Audio Source</h3>
+								<h3 class="text-uppercase">Audio Source</h3>
 								<p>Please make sure to allow the use of microphone in this website to work. Pick an audio source to visualize.</p>
 							</div>
 							<div class="col-md-12 d-flex flex-column gap-3">
 								<div class="d-flex gap-3">
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="audioSource" id="micSource" onclick="$('#audioControls').slideUp(200); getLocalStream()" value="mic" />
+										<input class="form-check-input" type="radio" name="audioSource" id="micSource" onclick="$('#audioControls').slideUp(200);" value="mic" checked />
 										<label class="form-check-label" for="micSource">Microphone</label>
 									</div>
 									<div class="form-check">
@@ -77,7 +77,7 @@
 						<div class="col-md-12">
 							<div class="card shadow border border-1 my-sm-2 my-md-0">
 								<div class="card-body p-4">
-									<h3>Customization</h3>
+									<h3 class="text-uppercase">Customization</h3>
 									<p>Design your own audio spectrum!</p>
 									<div class="row my-2">
 										<div class="col-md-4">
@@ -107,8 +107,8 @@
 										</div>
 										<div class="col-md-8">
 											<select class="form-select" id="spectrumStyle" style="width: 100%">
-												<option value="Ellipse">Ellipse</option>
 												<option value="Rectangle">Rectangle</option>
+												<option value="Ellipse">Ellipse</option>
 												<option value="Rectangle Thin">Rectangle Thin</option>
 												<option value="Hypno">Hypno</option>
 												<option value="Intestine">Intestine</option>

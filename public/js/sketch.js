@@ -4,6 +4,7 @@ let smoothing = 0.8;
 let distance = 2;
 let microphone;
 let currentAudio;
+let canvas;
 
 $(document).ready(function () {
 	$("#audioFile").on("change", function (e) {
@@ -32,12 +33,19 @@ function setup() {
 	let canvas = createCanvas(cWidth, cHeight);
 	canvas.parent("sketchContainer");
 
+	microphone = new p5.AudioIn();
+	microphone.start();
+
+	// FFT Setup
 	fft = new p5.FFT(smoothing, bands);
+	fft.setInput(microphone);
+
 	getAudioContext().resume(); // Resume audio context once during setup
 }
 
 function draw() {
 	background($("#backgColor").val());
+
 	let spectrum = fft.analyze();
 	let position = height / 2;
 
@@ -101,10 +109,11 @@ function updateFreqBands() {
 	let freqBandInput = document.getElementById("freqBands");
 	let freqBandsLabel = document.getElementById("freqBandsLabel");
 
-	freqBandInput.addEventListener("input", function () {
+	freqBandInput.addEventListener("change", function () {
 		let b = [16, 32, 64, 128, 256, 512, 1024];
 		bands = parseInt(b[this.value]);
 		freqBandsLabel.innerHTML = bands;
+
 		setup();
 	});
 }
@@ -113,10 +122,10 @@ function updateFreqBandSmoothing() {
 	let freqBandSmoothingInput = document.getElementById("freqBandSmoothing");
 	let freqBandSmoothingLabel = document.getElementById("freqBandSmoothingLabel");
 
-	freqBandSmoothingInput.addEventListener("input", function () {
+	freqBandSmoothingInput.addEventListener("change", function () {
 		smoothing = parseFloat(this.value);
 		freqBandSmoothingLabel.innerHTML = smoothing;
-		setup();
+		fft.smoothing = smoothing; // Update the smoothing property of the existing fft object
 	});
 }
 
