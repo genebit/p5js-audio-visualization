@@ -1,22 +1,24 @@
 let fft;
-let soundFile;
-
 let bands = 128;
 let smoothing = 0.8;
 let distance = 2;
 let microphone;
+let currentAudio;
 
 $(document).ready(function () {
-	// Listen for change event on file input
 	$("#audioFile").on("change", function (e) {
-		var file = e.target.files[0];
-		var audio = $("#audioControls")[0];
+		let file = e.target.files[0];
+		handleFile(file);
+	});
 
-		// Update src attribute of audio element
-		var fileURL = URL.createObjectURL(file);
-		audio.src = fileURL;
-
-		setup();
+	$("input[name='audioSource']").change(function () {
+		const selectedSrc = $("input[name='audioSource']:checked").val();
+		if (selectedSrc === "mic") {
+			setup();
+			microphone = new p5.AudioIn();
+			microphone.start();
+			fft.setInput(microphone);
+		}
 	});
 
 	updateFreqBands();
@@ -30,18 +32,12 @@ function setup() {
 	let canvas = createCanvas(cWidth, cHeight);
 	canvas.parent("sketchContainer");
 
-	microphone = new p5.AudioIn();
-	microphone.start();
-
-	// FFT Setup
 	fft = new p5.FFT(smoothing, bands);
-	fft.setInput(microphone);
+	getAudioContext().resume(); // Resume audio context once during setup
 }
 
 function draw() {
-	getAudioContext().resume();
 	background($("#backgColor").val());
-
 	let spectrum = fft.analyze();
 	let position = height / 2;
 
@@ -55,58 +51,132 @@ function draw() {
 	}
 }
 
-function selectStyle(selected, x, pos, bandheight) {
+function windowResized() {
+	updateCanvasSize();
+}
+
+function updateCanvasSize() {
+	let sketchContainer = document.getElementById("sketchContainer");
+	let cWidth = sketchContainer.offsetWidth;
+	let cHeight = sketchContainer.offsetHeight;
+	resizeCanvas(cWidth, cHeight);
+}
+
+function selectStyle(selected, x, pos, bandHeight) {
 	switch (selected) {
 		case "Intestine":
-			ellipse(x * distance, pos, 200, bandheight);
+			ellipse(x * distance, pos, 200, bandHeight);
 			break;
 		case "Rectangle":
-			rect(x * distance, height - bandheight, 15, bandheight);
+			rect(x * distance, height - bandHeight, 15, bandHeight);
 			break;
 		case "Rectangle Thin":
-			rect(x * distance, height - bandheight, 5, bandheight, 100);
+			rect(x * distance, height - bandHeight, 5, bandHeight, 100);
 			break;
 		case "Hypno":
 			noFill();
 			stroke($("#spectrumColor").val());
 			strokeWeight(3);
-			ellipse(width / 2, height / 2, bandheight, bandheight);
+			ellipse(width / 2, height / 2, bandHeight, bandHeight);
 			break;
 		case "Mirror":
 			let rectWidth = 5;
 			let rectX = x * distance - rectWidth / 2;
-			let rectY = height / 2 - bandheight / 2;
+			let rectY = height / 2 - bandHeight / 2;
 
-			// Draw top rectangle
-			rect(rectX, rectY, rectWidth, bandheight);
+			rect(rectX, rectY, rectWidth, bandHeight);
+			let bottomRectY = height / 2 + bandHeight / 2;
+			rect(rectX, bottomRectY, rectWidth, -bandHeight, 50);
+			break;
+		case "Ellipse":
+			const bassAmplitude = fft.getEnergy("bass");
+			const ellipseSize = map(bassAmplitude, 0, 255, 20, 200);
 
-			// Draw bottom rectangle
-			let bottomRectY = height / 2 + bandheight / 2;
-			rect(rectX, bottomRectY, rectWidth, -bandheight, 50);
+			ellipse(width / 2, height / 2, ellipseSize, ellipseSize);
 			break;
 	}
 }
 
 function updateFreqBands() {
-	let $freqBandInput = $("#freqBands");
-	let $freqBandsLabel = $("#freqBandsLabel");
+	let freqBandInput = document.getElementById("freqBands");
+	let freqBandsLabel = document.getElementById("freqBandsLabel");
 
-	$freqBandInput.on("input", function () {
+	freqBandInput.addEventListener("input", function () {
 		let b = [16, 32, 64, 128, 256, 512, 1024];
-
-		bands = parseInt(b[this.value]); // Update the bands value when the input changes
-		$freqBandsLabel.html(bands);
+		bands = parseInt(b[this.value]);
+		freqBandsLabel.innerHTML = bands;
 		setup();
 	});
 }
 
 function updateFreqBandSmoothing() {
-	let $freqBandSmoothingInput = $("#freqBandSmoothing");
-	let $freqBandSmoothingLabel = $("#freqBandSmoothingLabel");
+	let freqBandSmoothingInput = document.getElementById("freqBandSmoothing");
+	let freqBandSmoothingLabel = document.getElementById("freqBandSmoothingLabel");
 
-	$freqBandSmoothingInput.on("input", function () {
+	freqBandSmoothingInput.addEventListener("input", function () {
 		smoothing = parseFloat(this.value);
-		$freqBandSmoothingLabel.html(smoothing);
+		freqBandSmoothingLabel.innerHTML = smoothing;
 		setup();
 	});
+}
+
+function handleFile(file) {
+	const fileName = file.name;
+	const fileExtension = fileName.split(".").pop().toLowerCase();
+
+	if (fileExtension === "mp3" || fileExtension === "wav") {
+		if (currentAudio) {
+			currentAudio.stop();
+			currentAudio.disconnect();
+		}
+
+		currentAudio = loadSound(file, startAudioVisualization);
+	} else {
+		alert("Invalid file type. Please select an audio file.");
+	}
+}
+
+function startAudioVisualization(audio) {
+	fft.setInput(audio);
+}
+
+function playSong(element) {
+	if (currentAudio) {
+		const iconElement = element.querySelector("i");
+
+		if (element.classList.contains("playing")) {
+			element.classList.remove("playing");
+			iconElement.classList.remove("fa-pause");
+			iconElement.classList.add("fa-play");
+			currentAudio.pause();
+		} else {
+			element.classList.add("playing");
+			iconElement.classList.remove("fa-play");
+			iconElement.classList.add("fa-pause");
+			currentAudio.play();
+		}
+		return;
+	}
+	alert("Please enter an audio file.");
+}
+
+function repeatSong() {
+	if (currentAudio) {
+		currentAudio.stop();
+		currentAudio.play();
+	}
+}
+
+function getLocalStream() {
+	navigator.mediaDevices
+		.getUserMedia({ audio: true })
+		.then(function (stream) {
+			// Microphone access granted, do something with the audio stream
+			alert("Microphone access granted");
+			// You can use the `stream` object to process the audio stream
+		})
+		.catch(function (error) {
+			// Microphone access denied or error occurred
+			alert("Error accessing microphone:", error);
+		});
 }

@@ -8,6 +8,7 @@
 
 		<!-- site styles -->
 		<link rel="stylesheet" href="public/vendors/bs-coreui/bs-coreui.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="public/css/site.css" />
 
 		<!-- p5js library -->
@@ -20,7 +21,6 @@
 
 		<!--  -->
 		<script defer src="public/js/sketch.js"></script>
-		<script defer src="public/js/micpermission.js"></script>
 	</head>
 
 	<body>
@@ -38,7 +38,7 @@
 			<hr />
 			<div class="row">
 				<div class="col-md-6">
-					<div class="card shadow border border-1">
+					<div class="card shadow border border-1 my-sm-2 my-md-0">
 						<div class="card-body p-4">
 							<div class="col-md-12">
 								<h3>Audio Source</h3>
@@ -47,19 +47,27 @@
 							<div class="col-md-12 d-flex flex-column gap-3">
 								<div class="d-flex gap-3">
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="$('#audioFile, #audioControls').slideUp(300); getLocalStream()" checked />
-										<label class="form-check-label" for="flexRadioDefault1">Microphone</label>
+										<input class="form-check-input" type="radio" name="audioSource" id="micSource" onclick="$('#audioControls').slideUp(200); getLocalStream()" value="mic" />
+										<label class="form-check-label" for="micSource">Microphone</label>
 									</div>
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="$('#audioFile, #audioControls').slideDown(300)" />
-										<label class="form-check-label" for="flexRadioDefault2">Audio File</label>
+										<input class="form-check-input" type="radio" name="audioSource" id="fileSource" onclick="$('#audioControls').slideDown(200)" value="file" />
+										<label class="form-check-label" for="fileSource">Audio File</label>
 									</div>
 								</div>
-								<input type="file" class="form-control w-100" name="" id="audioFile" style="display: none" />
-								<audio id="audioControls" controls class="w-100" style="display: none">
-									<source src="" type="audio/mp3" />
-									Your browser does not support the audio element.
-								</audio>
+								<div id="audioControls" style="display: none">
+									<div class="d-flex gap-3">
+										<input type="file" class="form-control w-100" name="" id="audioFile" />
+										<div class="btn-group" role="group">
+											<button id="playBtn" onclick="playSong(this)" type="button" class="btn btn-outline-primary hvr-white">
+												<i class="fa-solid fa-play"></i>
+											</button>
+											<button id="ReplayBtn" onclick="repeatSong()" type="button" class="btn btn-outline-primary hvr-white">
+												<i class="fa-solid fa-rotate-right"></i>
+											</button>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -67,7 +75,7 @@
 				<div class="col-md-6">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="card shadow border border-1">
+							<div class="card shadow border border-1 my-sm-2 my-md-0">
 								<div class="card-body p-4">
 									<h3>Customization</h3>
 									<p>Design your own audio spectrum!</p>
@@ -99,6 +107,7 @@
 										</div>
 										<div class="col-md-8">
 											<select class="form-select" id="spectrumStyle" style="width: 100%">
+												<option value="Ellipse">Ellipse</option>
 												<option value="Rectangle">Rectangle</option>
 												<option value="Rectangle Thin">Rectangle Thin</option>
 												<option value="Hypno">Hypno</option>

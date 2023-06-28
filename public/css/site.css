@@ -7,3 +7,8 @@
 .spacer {
 	padding: 3rem 0;
 }
+
+.hvr-white:hover i,
+.hvr-white:focus i {
+	color: white;
+}
