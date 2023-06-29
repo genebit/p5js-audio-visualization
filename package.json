@@ -2,9 +2,9 @@
 	"name": "p5js-audio-visualization",
 	"version": "1.0.0",
 	"description": "An audio visualization web application built using p5js.",
-	"main": "app.js",
+	"main": "./app.js",
 	"scripts": {
-		"start": "nodemon app.js"
+		"start": "node ./app.js"
 	},
 	"keywords": [],
 	"contributors": [
@@ -26,8 +26,5 @@
 		"ejs": "^3.1.9",
 		"express": "^4.18.2",
 		"nodemon": "^2.0.22"
-	},
-	"engines": {
-		"node": ">=18.0.0"
 	}
 }
