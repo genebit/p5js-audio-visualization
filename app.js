@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-const port = 8080;
+// Get the port from the environment variable or use a default value
+const port = process.env.PORT || 8080;
 
 // Set the view engine to EJS
 app.set("view engine", "ejs");
