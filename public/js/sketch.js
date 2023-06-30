@@ -22,8 +22,9 @@ $(document).ready(function () {
 	$("input[name='audioSource']").change(function () {
 		const selectedSrc = $("input[name='audioSource']:checked").val();
 		if (selectedSrc === "mic") {
-			currentAudio.stop();
 			source = "mic";
+
+			if (currentAudio) currentAudio.stop();
 			setup();
 		}
 		source = "file";
@@ -71,7 +72,7 @@ function draw() {
 	for (let i = 0; i < spectrum.length; i++) {
 		let x = map(i, 0, spectrum.length, 0, width);
 		let bandHeight = map(spectrum[i], 0, 255, 0, height);
-		selectStyle(spectrumStyle, x, position, bandHeight);
+		selectStyle(spectrumStyle, x, position, bandHeight, spectrum);
 	}
 }
 
@@ -86,7 +87,7 @@ function updateCanvasSize() {
 	resizeCanvas(cWidth, cHeight);
 }
 
-function selectStyle(selected, x, pos, bandHeight) {
+function selectStyle(selected, x, pos, bandHeight, spectrum) {
 	switch (selected) {
 		case "Intestine":
 			ellipse(x * distance, pos, 200, bandHeight);
@@ -117,6 +118,19 @@ function selectStyle(selected, x, pos, bandHeight) {
 			const ellipseSize = map(bassAmplitude, 0, 255, 20, 200);
 
 			ellipse(width / 2, height / 2, ellipseSize, ellipseSize);
+			break;
+		case "Wavelength":
+			let waveform = fft.waveform();
+			noFill();
+			beginShape();
+			stroke($("#spectrumColor").val());
+			strokeWeight(1);
+			for (let i = 0; i < waveform.length; i++) {
+				let x = map(i, 0, waveform.length, 0, width);
+				let y = map(waveform[i], -1, 1, 0, height);
+				vertex(x, y);
+			}
+			endShape();
 			break;
 	}
 }
