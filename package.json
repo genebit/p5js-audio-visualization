@@ -4,7 +4,9 @@
 	"description": "An audio visualization web application built using p5js.",
 	"main": "./app.js",
 	"scripts": {
-		"start": "node ./app.js"
+		"dev": "nodemon ./app.js",
+		"start": "node ./app.js",
+		"deploy": "gcloud app deploy"
 	},
 	"keywords": [],
 	"contributors": [
