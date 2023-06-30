@@ -9,21 +9,24 @@ let fft;
 let microphone;
 let currentAudio;
 let canvas;
+let source = "mic";
 
 $(document).ready(function () {
 	$("#audioFile").on("change", function (e) {
 		let file = e.target.files[0];
 		handleFile(file);
+
+		if (microphone) microphone.stop();
 	});
 
 	$("input[name='audioSource']").change(function () {
 		const selectedSrc = $("input[name='audioSource']:checked").val();
 		if (selectedSrc === "mic") {
+			currentAudio.stop();
+			source = "mic";
 			setup();
-			microphone = new p5.AudioIn();
-			microphone.start();
-			fft.setInput(microphone);
 		}
+		source = "file";
 	});
 
 	$("#spectrumStyle").on("change", () => (spectrumStyle = $("#spectrumStyle").val()));
@@ -41,16 +44,22 @@ function setup() {
 	let canvas = createCanvas(cWidth, cHeight);
 	canvas.parent("sketchContainer");
 
-	microphone = new p5.AudioIn();
-	microphone.start();
-
 	// FFT Setup
 	fft = new p5.FFT(smoothing, bands);
-	fft.setInput(microphone);
+
+	if (source === "mic") {
+		microphone = new p5.AudioIn();
+		microphone.start();
+
+		fft.setInput(microphone);
+	}
+}
+
+function start() {
+	getAudioContext().resume();
 }
 
 function draw() {
-	getAudioContext().resume(); // Resume audio context once during setup
 	background(backgroundColor);
 
 	let spectrum = fft.analyze();
