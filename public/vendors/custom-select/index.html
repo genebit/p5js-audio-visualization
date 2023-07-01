@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Demo</title>
+
+		<!-- Fontawesome (required for icon) -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- BS5 (optional) -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+		<!-- Custom Select CSS (required) -->
+		<link rel="stylesheet" href="custom-select.css" />
+
+		<!-- Jquery (required) -->
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+		<!-- Custom Select JS (required) -->
+		<script defer src="custom-select.js"></script>
+	</head>
+	<body class="p-4 d-flex justify-content-center">
+		<div class="card shadow w-50">
+			<div class="card-header bg-transparent">
+				<h3 class="fw-bold p-3 m-0">CUSTOM FORMS</h3>
+			</div>
+			<div class="card-body p-5">
+				<div class="row">
+					<div class="col-sm-12">
+						<select class="form-select" id="spectrumStyle" style="width: 100%">
+							<option value="1">Lorem.</option>
+							<option value="2">Laudantium.</option>
+							<option value="3">Voluptate!</option>
+							<option value="4">Suscipit!</option>
+							<option value="5">Eum.</option>
+							<option value="6">Exercitationem!</option>
+							<option value="7">In.</option>
+							<option value="8">Quo.</option>
+							<option value="9">Ea.</option>
+							<option value="0">Temporibus.</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$("#spectrumStyle").select2({
+				minimumResultsForSearch: -1,
+			});
+		</script>
+	</body>
+</html>
