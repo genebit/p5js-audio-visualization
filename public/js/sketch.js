@@ -12,6 +12,10 @@ let canvas;
 let source = "mic";
 
 $(document).ready(function () {
+	$("#spectrumStyle").select2({
+		minimumResultsForSearch: -1,
+	});
+
 	$("#audioFile").on("change", function (e) {
 		let file = e.target.files[0];
 		handleFile(file);
