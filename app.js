@@ -11,6 +11,8 @@ app.set("view engine", "ejs");
 // Set the views directory
 app.set("views", path.join(__dirname, "views"));
 app.use("/public", express.static("public"));
+app.use("/vendors", express.static("public/vendors"));
+app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 
 // Routes
 const indexRoutes = require("./routes/index");

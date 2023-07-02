@@ -4,129 +4,139 @@
 		<%- include('header') %>
 	</head>
 	<body>
-		<div id="sketchContainer"></div>
-		<div class="container">
-			<div class="spacer"></div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="text-center">
-						<h1 class="text-uppercase">Audio Visualizer</h1>
-						<p>Built using the P5JS Library</p>
+		<div class="d-flex flex-column vh-100">
+			<div id="sketchContainer"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="text-center">
+							<h1 class="text-uppercase">Audio Visualizer</h1>
+							<p>Built using the P5JS Library</p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<hr />
-			<div class="row">
-				<div class="col-md-6">
-					<div class="card shadow border border-1 my-sm-2 my-md-0">
-						<div class="card-body p-4">
-							<div class="col-md-12">
-								<h3 class="text-uppercase">Audio Source</h3>
-								<p>Please make sure to allow the use of microphone in this website to work. Pick an audio source to visualize.</p>
-							</div>
-							<div class="col-md-12 d-flex flex-column gap-3">
-								<div class="d-flex gap-3">
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="audioSource" id="micSource" onclick="$('#audioControls').slideUp(200);" value="mic" checked />
-										<label class="form-check-label" for="micSource">Microphone</label>
-									</div>
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="audioSource" id="fileSource" onclick="$('#audioControls').slideDown(200)" value="file" />
-										<label class="form-check-label" for="fileSource">Audio File</label>
-									</div>
+				<hr />
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card shadow border border-1 my-sm-2 my-md-0">
+							<div class="card-body p-4">
+								<div class="col-md-12">
+									<h3 class="text-uppercase py-3">Audio Source</h3>
+									<p>Please make sure to allow the use of microphone in this website to work. Pick an audio source to visualize.</p>
 								</div>
-								<div id="audioControls" style="display: none">
+								<div class="col-md-12 d-flex flex-column gap-3">
 									<div class="d-flex gap-3">
-										<input type="file" class="form-control w-100" name="" id="audioFile" />
-										<div class="btn-group" role="group">
-											<button id="playBtn" onclick="playSong(this)" type="button" class="btn btn-outline-primary hvr-white">
-												<i class="fa-solid fa-play"></i>
-											</button>
-											<button id="ReplayBtn" onclick="repeatSong()" type="button" class="btn btn-outline-primary hvr-white">
-												<i class="fa-solid fa-rotate-right"></i>
-											</button>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="audioSource" id="micSource" onclick="$('#audioControls').slideUp(200);" value="mic" checked />
+											<label class="form-check-label" for="micSource">Microphone</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="audioSource" id="fileSource" onclick="$('#audioControls').slideDown(200)" value="file" />
+											<label class="form-check-label" for="fileSource">Audio File</label>
 										</div>
 									</div>
-								</div>
-								<div class="w-50">
-									<button onclick="start()" class="btn btn-primary w-100">Start</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card shadow border border-1 my-sm-2 my-md-0">
-								<div class="card-body p-4">
-									<h3 class="text-uppercase">Customization</h3>
-									<p>Design your own audio spectrum!</p>
-									<div class="row my-2">
-										<div class="col-md-4">
-											<p>Frequency Bands</p>
-										</div>
-										<div class="col-md-8">
-											<div class="d-flex gap-3">
-												<input class="form-range" id="freqBands" type="range" min="0" max="6" step="1" value="4" />
-												<label id="freqBandsLabel" for="">128</label>
+									<div id="audioControls" style="display: none">
+										<div class="d-flex flex-column gap-3">
+											<input type="file" class="form-control w-100" name="" id="audioFile" />
+											<div class="d-flex gap-3 align-items-center">
+												<div style="width: 80%">
+													<div class="d-flex gap-3">
+														<label for="">00:00</label>
+														<input class="form-range" type="range" step="1" value="0" />
+													</div>
+												</div>
+												<div>
+													<div class="btn-group" role="group">
+														<button id="playBtn" onclick="playSong(this)" type="button" class="btn btn-outline-primary hvr-white">
+															<i class="fa-solid fa-play"></i>
+														</button>
+														<button id="ReplayBtn" onclick="repeatSong()" type="button" class="btn btn-outline-primary hvr-white">
+															<i class="fa-solid fa-rotate-right"></i>
+														</button>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="row my-2">
-										<div class="col-md-4">
-											<p>Smoothing</p>
-										</div>
-										<div class="col-md-8">
-											<div class="d-flex gap-3">
-												<input class="form-range" id="freqBandSmoothing" type="range" min="0" max="0.9" step="0.1" value="0.8" />
-												<label id="freqBandSmoothingLabel" for="">0.8</label>
-											</div>
-										</div>
-									</div>
-									<div class="row my-2">
-										<div class="col-md-4">
-											<p>Spectrum Style</p>
-										</div>
-										<div class="col-md-8">
-											<select class="form-select" id="spectrumStyle" style="width: 100%">
-												<option value="Rectangle">Rectangle</option>
-												<option value="Ellipse">Ellipse</option>
-												<option value="Rectangle Thin">Rectangle Thin</option>
-												<option value="Hypno">Hypno</option>
-												<option value="Intestine">Intestine</option>
-												<option value="Mirror">Mirror</option>
-												<option value="Wavelength">Wavelength</option>
-											</select>
-										</div>
-									</div>
-									<div class="row my-2">
-										<div class="col-md-4">
-											<p>Background Color</p>
-										</div>
-										<div class="col-md-8">
-											<input id="backgColor" type="color" value="#ffffff" />
-										</div>
-									</div>
-									<div class="row my-2">
-										<div class="col-md-4">
-											<p>Spectrum Color</p>
-										</div>
-										<div class="col-md-8">
-											<input id="spectrumColor" type="color" value="#2a2e33" />
-										</div>
+									<div class="w-50">
+										<button onclick="start()" class="btn btn-primary w-100">Start</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card shadow border border-1 my-sm-2 my-md-0">
+									<div class="card-body p-4">
+										<h3 class="text-uppercase">Customization</h3>
+										<p>Design your own audio spectrum!</p>
+										<div class="row my-2">
+											<div class="col-md-4">
+												<p>Frequency Bands</p>
+											</div>
+											<div class="col-md-8">
+												<div class="d-flex gap-3">
+													<input class="form-range" id="freqBands" type="range" min="0" max="6" step="1" value="4" />
+													<label id="freqBandsLabel" for="">128</label>
+												</div>
+											</div>
+										</div>
+										<div class="row my-2">
+											<div class="col-md-4">
+												<p>Smoothing</p>
+											</div>
+											<div class="col-md-8">
+												<div class="d-flex gap-3">
+													<input class="form-range" id="freqBandSmoothing" type="range" min="0" max="0.9" step="0.1" value="0.8" />
+													<label id="freqBandSmoothingLabel" for="">0.8</label>
+												</div>
+											</div>
+										</div>
+										<div class="row my-2">
+											<div class="col-md-4">
+												<p>Spectrum Style</p>
+											</div>
+											<div class="col-md-8">
+												<select class="form-select" id="spectrumStyle" style="width: 100%">
+													<option value="Wavelength">Wavelength</option>
+													<option value="Rectangle">Rectangle</option>
+													<option value="Ellipse">Ellipse</option>
+													<option value="Rectangle Thin">Rectangle Thin</option>
+													<option value="Hypno">Hypno</option>
+													<option value="Intestine">Intestine</option>
+													<option value="Mirror">Mirror</option>
+												</select>
+											</div>
+										</div>
+										<div class="row my-2">
+											<div class="col-md-4">
+												<p>Background Color</p>
+											</div>
+											<div class="col-md-8">
+												<input id="backgColor" type="color" value="#ffffff" />
+											</div>
+										</div>
+										<div class="row my-2">
+											<div class="col-md-4">
+												<p>Spectrum Color</p>
+											</div>
+											<div class="col-md-8">
+												<input id="spectrumColor" type="color" value="#2a2e33" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+				<footer class="my-2">
+					<hr style="color: white; margin: 0" />
+					<p>&#169; GeneBit 2020</p>
+				</footer>
 			</div>
-			<div class="spacer"></div>
-			<footer>
-				<hr style="color: white; margin: 0" />
-				<p>&#169; GeneBit 2020</p>
-			</footer>
 		</div>
 	</body>
 </html>
