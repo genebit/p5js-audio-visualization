@@ -4,21 +4,30 @@
 		<%- include('header') %>
 	</head>
 	<body>
-		<div class="d-flex flex-column vh-100">
-			<div id="sketchContainer"></div>
+		<div class="d-flex flex-column">
+			<div id="sketchContainer">
+				<button onclick="fullscreenCanvas()" class="p-3 position-absolute border-0">
+					<i id="fullscreenIcon" class="fa-solid fa-up-right-and-down-left-from-center h5 m-0"></i>
+				</button>
+			</div>
 			<div class="container">
+				<div class="spacer"></div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="text-center">
-							<h1 class="text-uppercase">Audio Visualizer</h1>
+							<h1 class="text-uppercase">Gene Beat: Audio Visualizer</h1>
 							<p>Built using the P5JS Library</p>
 						</div>
+					</div>
+					<div class="col-md-12 text-center">
+						<input id="backgColor" type="color" value="#ffffff" />
+						<input id="spectrumColor" type="color" value="#2a2e33" />
 					</div>
 				</div>
 				<hr />
 				<div class="row">
 					<div class="col-md-6">
-						<div class="card shadow border border-1 my-sm-2 my-md-0">
+						<div class="card h-100 shadow border border-1 my-sm-2 my-md-0">
 							<div class="card-body p-4">
 								<div class="col-md-12">
 									<h3 class="text-uppercase py-3">Audio Source</h3>
@@ -41,8 +50,8 @@
 											<div class="d-flex gap-3 align-items-center">
 												<div style="width: 80%">
 													<div class="d-flex gap-3">
-														<label for="">00:00</label>
-														<input class="form-range" type="range" step="1" value="0" />
+														<label id="songTrackTime" for="">00:00</label>
+														<input id="songTrack" class="accent-color-primary w-100" type="range" step="1" value="0" />
 													</div>
 												</div>
 												<div>
@@ -58,8 +67,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="w-50">
-										<button onclick="start()" class="btn btn-primary w-100">Start</button>
+									<div class="w-25">
+										<button onclick="start()" class="btn btn-primary w-100 fw-bold text-white">Start</button>
 									</div>
 								</div>
 							</div>
@@ -68,7 +77,7 @@
 					<div class="col-md-6">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="card shadow border border-1 my-sm-2 my-md-0">
+								<div class="card h-100 shadow border border-1 my-sm-2 my-md-0">
 									<div class="card-body p-4">
 										<h3 class="text-uppercase">Customization</h3>
 										<p>Design your own audio spectrum!</p>
@@ -78,7 +87,7 @@
 											</div>
 											<div class="col-md-8">
 												<div class="d-flex gap-3">
-													<input class="form-range" id="freqBands" type="range" min="0" max="6" step="1" value="4" />
+													<input class="accent-color-primary w-100" id="freqBands" type="range" min="0" max="6" step="1" value="4" />
 													<label id="freqBandsLabel" for="">128</label>
 												</div>
 											</div>
@@ -89,7 +98,7 @@
 											</div>
 											<div class="col-md-8">
 												<div class="d-flex gap-3">
-													<input class="form-range" id="freqBandSmoothing" type="range" min="0" max="0.9" step="0.1" value="0.8" />
+													<input class="accent-color-primary w-100" id="freqBandSmoothing" type="range" min="0" max="0.9" step="0.1" value="0.8" />
 													<label id="freqBandSmoothingLabel" for="">0.8</label>
 												</div>
 											</div>
@@ -110,28 +119,13 @@
 												</select>
 											</div>
 										</div>
-										<div class="row my-2">
-											<div class="col-md-4">
-												<p>Background Color</p>
-											</div>
-											<div class="col-md-8">
-												<input id="backgColor" type="color" value="#ffffff" />
-											</div>
-										</div>
-										<div class="row my-2">
-											<div class="col-md-4">
-												<p>Spectrum Color</p>
-											</div>
-											<div class="col-md-8">
-												<input id="spectrumColor" type="color" value="#2a2e33" />
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="spacer"></div>
 				<footer class="my-2">
 					<hr style="color: white; margin: 0" />
 					<p>&#169; GeneBit 2020</p>
