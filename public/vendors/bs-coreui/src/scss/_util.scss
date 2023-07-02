@@ -1,0 +1,5 @@
+@each $color, $value in $theme-colors {
+    .accent-color-#{$color} {
+        accent-color: $value;
+    }
+}

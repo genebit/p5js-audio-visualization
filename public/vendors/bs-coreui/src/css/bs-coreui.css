@@ -12802,4 +12802,36 @@ a:hover {
 }
 .slide-in {
   animation-name: slideIn;
+}
+
+.accent-color-light {
+  accent-color: #f8f8f8;
+}
+
+.accent-color-dark {
+  accent-color: #101825;
+}
+
+.accent-color-primary {
+  accent-color: #417efa;
+}
+
+.accent-color-secondary {
+  accent-color: #e3e3e3;
+}
+
+.accent-color-info {
+  accent-color: #3d7794;
+}
+
+.accent-color-success {
+  accent-color: #12b860;
+}
+
+.accent-color-warning {
+  accent-color: #ffe95a;
+}
+
+.accent-color-danger {
+  accent-color: #ff443a;
 }/*# sourceMappingURL=bs-coreui.css.map */
