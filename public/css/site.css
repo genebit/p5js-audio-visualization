@@ -40,6 +40,7 @@ h6 {
 	transform: translateX(100%);
 	transition: transform 300ms ease-in-out;
 	z-index: 1000;
+	background-color: #F7F6F3;
 }
 
 .active {
