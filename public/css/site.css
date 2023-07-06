@@ -3,6 +3,14 @@
 	font-family: "Montserrat", sans-serif;
 }
 
+body {
+	overflow: hidden;
+}
+
+main {
+	animation: fadeIn 500ms ease-in;
+}
+
 h1,
 h2,
 h3,
@@ -24,5 +32,81 @@ h6 {
 
 .hvr-white:hover i,
 .hvr-white:focus i {
+	color: white !important;
+}
+
+.sidebar {
+	width: 30%;
+	transform: translateX(100%);
+	transition: transform 300ms ease-in-out;
+	z-index: 1000;
+}
+
+.active {
+	transform: translateX(0);
+}
+
+/*#region Color Picker */
+input[type="color"] {
+	padding: 0.3rem;
+	border-radius: 5px;
+	margin: 0;
+	border: 2px solid var(--bs-dark);
+	width: 8rem;
+	height: 3rem;
+}
+input[type="color"]::-moz-color-swatch {
+	border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+	border-radius: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+.color-input {
+	position: relative;
+	width: max-content;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.color-input label:hover,
+.color-input input:hover {
+	cursor: pointer;
+}
+
+.color-input label {
+	font-size: 0.75rem;
+	position: absolute;
 	color: white;
+	text-align: center;
+	mix-blend-mode: difference;
+}
+/*#endregion  */
+
+@media only screen and (max-width: 1200px) {
+	.sidebar {
+		width: 50%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.sidebar {
+		width: 100%;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

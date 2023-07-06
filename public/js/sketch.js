@@ -237,38 +237,3 @@ function getLocalStream() {
 			alert("Error accessing microphone:", error);
 		});
 }
-
-function fullscreenCanvas() {
-	const container = $("#sketchContainer")[0];
-	const fullscreenIcon = $("#fullscreenIcon");
-
-	if (!document.fullscreenElement) {
-		if (container.requestFullscreen) {
-			container.requestFullscreen();
-		} else if (container.mozRequestFullScreen) {
-			container.mozRequestFullScreen();
-		} else if (container.webkitRequestFullscreen) {
-			container.webkitRequestFullscreen();
-		} else if (container.msRequestFullscreen) {
-			container.msRequestFullscreen();
-		}
-
-		// Update the icon to the fullscreen icon
-		fullscreenIcon.removeClass("fa-up-right-and-down-left-from-center");
-		fullscreenIcon.addClass("fa-down-left-and-up-right-to-center");
-	} else {
-		if (document.exitFullscreen) {
-			document.exitFullscreen();
-		} else if (document.mozCancelFullScreen) {
-			document.mozCancelFullScreen();
-		} else if (document.webkitExitFullscreen) {
-			document.webkitExitFullscreen();
-		} else if (document.msExitFullscreen) {
-			document.msExitFullscreen();
-		}
-
-		// Update the icon to the default icon
-		fullscreenIcon.removeClass("fa-down-left-and-up-right-to-center");
-		fullscreenIcon.addClass("fa-up-right-and-down-left-from-center");
-	}
-}

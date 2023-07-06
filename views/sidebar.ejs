@@ -1,0 +1,112 @@
+<div class="sidebar shadow-lg vh-100 p-5 position-absolute end-0 bg-white border border-1">
+	<div class="d-flex justify-content-between mb-5">
+		<button onclick="toggleSidebar()" class="btn bg-transparent shadow-none border-0">
+			<i class="fa-solid fa-angles-right fa-2xl"></i>
+		</button>
+		<button onclick="toggleThemeMode()" class="btn bg-transparent shadow-none border-0">
+			<img id="themeSliderIcon" src="/public/assets/svg/slider-dark-mode.svg" alt="" />
+		</button>
+	</div>
+	<div class="d-flex flex-column gap-3">
+		<button class="btn btn-primary py-3 px-5">
+			<div class="d-flex justify-content-between align-items-center">
+				<div class="text-start text-white">
+					<h3 class="p-0 m-0 text-white">Invite your friends!</h3>
+					Unlock more spectrum shapes.
+				</div>
+				<img src="/public/assets/svg/gmail.svg" width="50" alt="" />
+			</div>
+		</button>
+		<div class="card shadow border border-2 border-primary">
+			<div class="card-body p-4">
+				<h3 class="text-uppercase text-accent">Customization <i class="fa-solid fa-palette text-accent"></i></h3>
+				<p>Design your own audio spectrum!</p>
+				<div class="row my-2">
+					<div class="col-md-4">
+						<p>Frequency Bands</p>
+					</div>
+					<div class="col-md-8">
+						<div class="d-flex align-items-center gap-3">
+							<input id="freqBands" class="accent-color-primary w-100" type="range" min="0" max="6" step="1" value="4" />
+							<label id="freqBandsLabel">128</label>
+						</div>
+					</div>
+				</div>
+				<div class="row my-2">
+					<div class="col-md-4">
+						<p>Smoothing</p>
+					</div>
+					<div class="col-md-8">
+						<div class="d-flex align-items-center gap-3">
+							<input id="freqBandSmoothing" class="accent-color-primary w-100" type="range" min="0" max="0.9" step="0.1" value="0.8" />
+							<label id="freqBandSmoothingLabel">0.8</label>
+						</div>
+					</div>
+				</div>
+				<div class="row my-2">
+					<div class="col-md-4">
+						<p>Spectrum Style</p>
+					</div>
+					<div class="col-md-8">
+						<select id="spectrumStyle" class="form-select" style="width: 100%">
+							<option value="Wavelength">Wavelength</option>
+							<option value="Rectangle">Rectangle</option>
+							<option value="Ellipse">Ellipse</option>
+							<option value="Rectangle Thin">Rectangle Thin</option>
+							<option value="Hypno">Hypno</option>
+							<option value="Intestine">Intestine</option>
+							<option value="Mirror">Mirror</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card shadow border border-2 border-primary">
+			<div class="card-body p-4">
+				<div class="col-md-12">
+					<h3 class="text-uppercase text-accent">Audio Source <i class="fa-solid fa-volume-off text-accent"></i></h3>
+					<p>Please make sure to allow the use of microphone in this website to work. Pick an audio source to visualize.</p>
+				</div>
+				<div class="col-md-12 d-flex flex-column gap-3">
+					<div class="d-flex gap-3">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="audioSource" id="micSource" onclick="$('#audioControls').slideUp(200);" value="mic" checked />
+							<label class="form-check-label" for="micSource">Microphone</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="audioSource" id="fileSource" onclick="$('#audioControls').slideDown(200)" value="file" />
+							<label class="form-check-label" for="fileSource">Audio File</label>
+						</div>
+					</div>
+					<div id="audioControls" style="display: none">
+						<div class="d-flex flex-column gap-3">
+							<input type="file" class="form-control w-100" name="" id="audioFile" />
+							<div class="d-flex gap-3 align-items-center">
+								<div style="width: 80%">
+									<div class="d-flex align-items-center gap-3">
+										<label id="songTrackTime" for="">00:00</label>
+										<input id="songTrack" class="w-100" type="range" min="0" max="100" step="1" value="0" />
+									</div>
+								</div>
+								<div>
+									<div class="btn-group" role="group">
+										<button id="playBtn" onclick="playSong(this)" type="button" class="btn btn-outline-primary hvr-white">
+											<i class="fa-solid fa-play text-primary"></i>
+										</button>
+										<button id="ReplayBtn" onclick="repeatSong()" type="button" class="btn btn-outline-primary hvr-white">
+											<i class="fa-solid fa-rotate-right text-primary"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button onclick="start()" class="btn btn-primary w-100 fw-bold text-white">Start</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="position-absolute bottom-0 w-100" style="z-index: -10">
+		<img class="w-100" src="/public/assets/svg/waves-ver-light-mode.svg" alt="" />
+	</div>
+</div>
