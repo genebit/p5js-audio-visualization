@@ -71,8 +71,22 @@ window.toggleThemeMode = function () {
 
 	$body.toggleClass("dark");
 
+<<<<<<< Updated upstream
 	if ($body.hasClass("dark")) $themeSliderIcon.attr("src", darkModePath);
 	else $themeSliderIcon.attr("src", lightModePath);
+=======
+	if ($body.hasClass("dark")) {
+		$themeSliderIcon.attr("src", lightModePath);
+		$(".sidebar").removeClass("bg-white").addClass("bg-dark");
+		$(".card").removeClass("bg-white").addClass("bg-dark");
+		$(".p").removeClass("text-dark").addClass("text-white");
+	} else {
+		$themeSliderIcon.attr("src", darkModePath);
+		$(".sidebar").removeClass("bg-dark").addClass("bg-white");
+		$(".card").removeClass("bg-dark").addClass("bg-white");
+		$(".p").removeClass("text-white").addClass("text-dark");
+	}
+>>>>>>> Stashed changes
 };
 
 export { bands, smoothing, spectrumStyle, spectrumColor, backgroundColor };
