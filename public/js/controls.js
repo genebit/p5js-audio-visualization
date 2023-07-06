@@ -71,8 +71,8 @@ window.toggleThemeMode = function () {
 
 	$body.toggleClass("dark");
 
-	if ($body.hasClass("dark")) $themeSliderIcon.attr("src", lightModePath);
-	else $themeSliderIcon.attr("src", darkModePath);
+	if ($body.hasClass("dark")) $themeSliderIcon.attr("src", darkModePath);
+	else $themeSliderIcon.attr("src", lightModePath);
 };
 
 export { bands, smoothing, spectrumStyle, spectrumColor, backgroundColor };
