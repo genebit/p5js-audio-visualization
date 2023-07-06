@@ -71,10 +71,6 @@ window.toggleThemeMode = function () {
 
 	$body.toggleClass("dark");
 
-<<<<<<< Updated upstream
-	if ($body.hasClass("dark")) $themeSliderIcon.attr("src", darkModePath);
-	else $themeSliderIcon.attr("src", lightModePath);
-=======
 	if ($body.hasClass("dark")) {
 		$themeSliderIcon.attr("src", lightModePath);
 		$(".sidebar").removeClass("bg-white").addClass("bg-dark");
@@ -86,7 +82,6 @@ window.toggleThemeMode = function () {
 		$(".card").removeClass("bg-dark").addClass("bg-white");
 		$(".p").removeClass("text-white").addClass("text-dark");
 	}
->>>>>>> Stashed changes
 };
 
 export { bands, smoothing, spectrumStyle, spectrumColor, backgroundColor };
