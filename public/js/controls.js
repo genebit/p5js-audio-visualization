@@ -72,15 +72,23 @@ window.toggleThemeMode = function () {
 	$body.toggleClass("dark");
 
 	if ($body.hasClass("dark")) {
-		$themeSliderIcon.attr("src", lightModePath);
+		$themeSliderIcon.attr("src", darkModePath);
 		$(".sidebar").removeClass("bg-white").addClass("bg-dark");
 		$(".card").removeClass("bg-white").addClass("bg-dark");
-		$(".p").removeClass("text-dark").addClass("text-white");
+		$(".text-uppercase").addClass("text-white");
+		$(".pSidebar").addClass("text-white");
+		$("label").addClass("text-white");
+		$(".border").addClass("border-dark").removeClass("border-primary");
+		$("#toggleBarIcon").css("color", "white");
 	} else {
-		$themeSliderIcon.attr("src", darkModePath);
+		$themeSliderIcon.attr("src", lightModePath);
 		$(".sidebar").removeClass("bg-dark").addClass("bg-white");
 		$(".card").removeClass("bg-dark").addClass("bg-white");
-		$(".p").removeClass("text-white").addClass("text-dark");
+		$(".text-uppercase").removeClass("text-white");
+		$(".pSidebar").removeClass("text-white");
+		$("label").removeClass("text-white");
+		$(".border").removeClass("border-dark").addClass("border-primary");
+		$("#toggleBarIcon").css("color", "black");
 	}
 };
 

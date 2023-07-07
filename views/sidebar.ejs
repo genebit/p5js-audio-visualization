@@ -1,7 +1,7 @@
 <div class="sidebar shadow-lg vh-100 p-5 position-absolute end-0 border border-1">
 	<div class="d-flex justify-content-between mb-5">
 		<button onclick="toggleSidebar()" class="btn bg-transparent shadow-none border-0">
-			<i class="fa-solid fa-angles-right fa-2xl"></i>
+			<i id="toggleBarIcon" class="fa-solid fa-angles-right fa-2xl"></i>
 		</button>
 		<button onclick="toggleThemeMode()" class="btn bg-transparent shadow-none border-0">
 			<img id="themeSliderIcon" src="/public/assets/svg/slider-light-mode.svg" alt="" />
@@ -20,10 +20,10 @@
 		<div class="card shadow border border-2 border-primary">
 			<div class="card-body p-4">
 				<h3 class="text-uppercase text-accent">Customization <i class="fa-solid fa-palette text-accent"></i></h3>
-				<p>Design your own audio spectrum!</p>
+				<p class="pSidebar">Design your own audio spectrum!</p>
 				<div class="row my-2">
 					<div class="col-md-4">
-						<p>Frequency Bands</p>
+						<p class="pSidebar">Frequency Bands</p>
 					</div>
 					<div class="col-md-8">
 						<div class="d-flex align-items-center gap-3">
@@ -34,7 +34,7 @@
 				</div>
 				<div class="row my-2">
 					<div class="col-md-4">
-						<p>Smoothing</p>
+						<p class="pSidebar">Smoothing</p>
 					</div>
 					<div class="col-md-8">
 						<div class="d-flex align-items-center gap-3">
@@ -45,7 +45,7 @@
 				</div>
 				<div class="row my-2">
 					<div class="col-md-4">
-						<p>Spectrum Style</p>
+						<p class="pSidebar">Spectrum Style</p>
 					</div>
 					<div class="col-md-8">
 						<select id="spectrumStyle" class="form-select" style="width: 100%">
@@ -65,7 +65,7 @@
 			<div class="card-body p-4">
 				<div class="col-md-12">
 					<h3 class="text-uppercase text-accent">Audio Source <i class="fa-solid fa-volume-off text-accent"></i></h3>
-					<p>Please make sure to allow the use of microphone in this website to work. Pick an audio source to visualize.</p>
+					<p class="pSidebar">Please make sure to allow the use of microphone in this website to work. Pick an audio source to visualize.</p>
 				</div>
 				<div class="col-md-12 d-flex flex-column gap-3">
 					<div class="d-flex gap-3">
