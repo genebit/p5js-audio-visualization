@@ -74,7 +74,7 @@ window.toggleThemeMode = function () {
 	if ($body.hasClass("dark")) {
 		$themeSliderIcon.attr("src", darkModePath);
 		$(".sidebar").removeClass("bg-white").addClass("bg-dark");
-		$(".card").removeClass("bg-white").addClass("bg-dark");
+		$(".card").removeClass("bg-white").addClass("bg-secondary");
 		$(".text-uppercase").addClass("text-white");
 		$(".pSidebar").addClass("text-white");
 		$("label").addClass("text-white");
@@ -83,7 +83,7 @@ window.toggleThemeMode = function () {
 	} else {
 		$themeSliderIcon.attr("src", lightModePath);
 		$(".sidebar").removeClass("bg-dark").addClass("bg-white");
-		$(".card").removeClass("bg-dark").addClass("bg-white");
+		$(".card").removeClass("bg-secondary").addClass("bg-white");
 		$(".text-uppercase").removeClass("text-white");
 		$(".pSidebar").removeClass("text-white");
 		$("label").removeClass("text-white");

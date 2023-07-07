@@ -26,6 +26,14 @@ h6 {
 	height: 50vh;
 }
 
+.bg-dark {
+	background-color: rgba(47, 52, 56, 1) !important;
+}
+
+.bg-secondary {
+	background-color: rgba(55, 60, 63, 1) !important;
+}
+
 .spacer {
 	padding: 3rem 0;
 }
@@ -40,7 +48,7 @@ h6 {
 	transform: translateX(100%);
 	transition: transform 300ms ease-in-out;
 	z-index: 1000;
-	background-color: #F7F6F3;
+	background-color: #f7f6f3;
 }
 
 .active {
