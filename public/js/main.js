@@ -11,4 +11,21 @@ jQuery(function () {
 	setSliderStyle("freqBandSmoothing", "var(--bs-primary)", "var(--bs-accent)", "#d3d3d3");
 
 	$("#spectrumStyle").select2({ minimumResultsForSearch: -1 });
+
+	micPermission();
 });
+
+const micPermission = function () {
+	navigator.mediaDevices
+		.getUserMedia({ audio: true })
+		.then(function (stream) {})
+		.catch(function (err) {
+			$("#micAccessAlert").animate(
+				{
+					right: "1rem",
+					opacity: 1,
+				},
+				"slow"
+			);
+		});
+};
