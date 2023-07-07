@@ -2,7 +2,7 @@ let $freqBands, $freqBandSmoothing, $freqBackgroundColor, $freqSpectrumColor, $f
 let bands, smoothing, spectrumStyle, spectrumColor, backgroundColor;
 
 // p5js
-let fft, sound, microphone;
+let fft, source, sound, microphone;
 let canvas, $sketchContainer;
 let FPS = 10;
 
@@ -18,6 +18,9 @@ function setup() {
 	canvas = createCanvas(canvasWidth, canvasHeight);
 	canvas.parent("sketchContainer");
 
+	// Initialize microphone
+	microphone = new p5.AudioIn();
+
 	frameRate(FPS);
 
 	// FFT Setup
@@ -31,7 +34,11 @@ function draw() {
 	let spectrum = fft.analyze();
 
 	// Show the demo by default, this is where no audio source are selected yet
-	demo();
+	// If there are currently no audio source selected then show the demo
+	if (!microphone || !sound) demo();
+	else {
+		console.log(spectrum);
+	}
 }
 
 // Canvas resizing to make it reponsive

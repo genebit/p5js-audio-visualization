@@ -1,4 +1,6 @@
 window.updateVariablesOnChange = function () {
+	const $audioSrcCheckbox = $("input[name='audioSource']");
+
 	$freqBands.on("input", function () {
 		const bandSet = [16, 32, 64, 128, 256, 512, 1024];
 		bands = this.value;
@@ -19,6 +21,14 @@ window.updateVariablesOnChange = function () {
 
 	$freqBackgroundColor.on("input", function () {
 		backgroundColor = this.value;
+	});
+
+	$audioSrcCheckbox.on("change", function () {
+		const selectedSrc = $("input[name='audioSource']:checked").val();
+		if (selectedSrc === "mic") {
+		}
+		if (selectedSrc === "file") {
+		}
 	});
 };
 
@@ -104,4 +114,8 @@ window.toggleThemeMode = function () {
 		$(".border").removeClass("border-dark").addClass("border-primary");
 		$("#toggleBarIcon").css("color", "black");
 	}
+};
+
+window.start = function () {
+	getAudioContext().resume();
 };
