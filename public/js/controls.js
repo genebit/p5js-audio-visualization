@@ -1,26 +1,44 @@
-// Controls
-let bands = 128;
-let smoothing = 0.8;
-let spectrumStyle;
-let spectrumColor;
-let backgroundColor;
+window.updateVariablesOnChange = function () {
+	$freqBands.on("input", function () {
+		const bandSet = [16, 32, 64, 128, 256, 512, 1024];
+		bands = this.value;
+		this.nextElementSibling.innerHTML = bandSet[parseInt(bands)];
+	});
 
-const $freqBands = $("#freqBands");
-const $freqBandSmoothing = $("#freqBandSmoothing");
-const $freqBackgroundColor = $("#backgroundClrPicker");
-const $freqSpectrumColor = $("#spectrumClrPicker");
-const $freqSpectrumStyle = $("#spectrumStyle");
+	$freqBandSmoothing.on("input", function () {
+		smoothing = this.value;
+	});
 
-// Set the default slider styles using linear gradient
-setSliderStyle("songTrack", "var(--bs-primary)", "var(--bs-accent)", "#d3d3d3");
-setSliderStyle("freqBands", "var(--bs-primary)", "var(--bs-accent)", "#d3d3d3");
-setSliderStyle("freqBandSmoothing", "var(--bs-primary)", "var(--bs-accent)", "#d3d3d3");
+	$freqSpectrumStyle.on("change", function () {
+		spectrumStyle = this.value;
+	});
 
-$freqSpectrumStyle.select2({ minimumResultsForSearch: -1 });
+	$freqSpectrumColor.on("input", function () {
+		spectrumColor = this.value;
+	});
 
-$freqBands.on("input", () => (bands = this.value));
-$freqBandSmoothing.on("input", () => (smoothing = this.value));
-$freqSpectrumStyle.on("change", () => (spectrumStyle = this.value));
+	$freqBackgroundColor.on("input", function () {
+		backgroundColor = this.value;
+	});
+};
+
+window.initVariables = function () {
+	// Elements
+	$freqBands = $("#freqBands");
+	$freqBandSmoothing = $("#freqBandSmoothing");
+	$freqBackgroundColor = $("#backgroundClrPicker");
+	$freqSpectrumColor = $("#spectrumClrPicker");
+	$freqSpectrumStyle = $("#spectrumStyle");
+
+	// Controls with their default values
+	bands = 128;
+	smoothing = 0.9;
+	spectrumStyle = $freqSpectrumStyle.val();
+	spectrumColor = $freqSpectrumColor.val();
+	backgroundColor = $freqBackgroundColor.val();
+
+	$sketchContainer = $("#sketchContainer");
+};
 
 window.toggleSidebar = function () {
 	var sidebar = $(".sidebar");
@@ -75,21 +93,15 @@ window.toggleThemeMode = function () {
 		$themeSliderIcon.attr("src", darkModePath);
 		$(".sidebar").removeClass("bg-white").addClass("bg-dark");
 		$(".card").removeClass("bg-white").addClass("bg-secondary");
-		$(".text-uppercase").addClass("text-white");
-		$(".pSidebar").addClass("text-white");
-		$("label").addClass("text-white");
+		$(".text-uppercase, .pSidebar, label").addClass("text-white");
 		$(".border").addClass("border-dark").removeClass("border-primary");
 		$("#toggleBarIcon").css("color", "white");
 	} else {
 		$themeSliderIcon.attr("src", lightModePath);
 		$(".sidebar").removeClass("bg-dark").addClass("bg-white");
 		$(".card").removeClass("bg-secondary").addClass("bg-white");
-		$(".text-uppercase").removeClass("text-white");
-		$(".pSidebar").removeClass("text-white");
-		$("label").removeClass("text-white");
+		$(".text-uppercase, .pSidebar, label").removeClass("text-white");
 		$(".border").removeClass("border-dark").addClass("border-primary");
 		$("#toggleBarIcon").css("color", "black");
 	}
 };
-
-export { bands, smoothing, spectrumStyle, spectrumColor, backgroundColor };

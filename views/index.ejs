@@ -9,13 +9,13 @@
 			<div class="vh-100 vw-100">
 				<div class="d-flex flex-column h-100">
 					<div id="sketchContainer" class="w-100" style="height: 70%">
-						<button onclick="toggleFullscreen()" class="btn bg-transparent border-0 shadow-none p-4">
+						<button onclick="toggleFullscreen()" class="btn bg-transparent border-0 shadow-none p-4 position-absolute">
 							<i id="fullscreenIcon" class="fa-solid fa-up-right-and-down-left-from-center h4"></i>
 						</button>
 					</div>
-					<div class="d-flex shadow-lg w-100" style="height: 30%">
-						<div class="container py-5 mx-5">
-							<div class="d-flex justify-content-between">
+					<div class="w-100" style="height: 30%">
+						<div class="container-fluid py-5">
+							<div class="d-flex justify-content-between mx-5 px-3">
 								<div class="d-flex gap-5">
 									<img src="/public/assets/svg/logo.svg" alt="" width="100" />
 									<div>
@@ -24,11 +24,11 @@
 											<p class="lead">Customize your colors.</p>
 											<div class="d-flex gap-2">
 												<div class="color-input">
-													<input id="backgroundClrPicker" type="color" value="#0e1c2e" />
+													<input id="backgroundClrPicker" type="color" value="#ffffff" />
 													<label for="backgroundClrPicker">Background</label>
 												</div>
 												<div class="color-input">
-													<input id="spectrumClrPicker" type="color" value="#ffffff" />
+													<input id="spectrumClrPicker" type="color" value="#0e1c2e" />
 													<label for="spectrumClrPicker">Spectrum</label>
 												</div>
 											</div>
