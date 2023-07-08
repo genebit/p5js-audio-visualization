@@ -65,7 +65,7 @@
 			<div class="card-body p-4">
 				<div class="col-md-12">
 					<h3 class="text-uppercase text-accent">Audio Source <i class="fa-solid fa-volume-off text-accent"></i></h3>
-					<p class="pSidebar">Please make sure to allow the use of microphone in this website to work. Pick an audio source to visualize.</p>
+					<p class="pSidebar">Pick an audio source to visualize.</p>
 				</div>
 				<div class="col-md-12 d-flex flex-column gap-3">
 					<div class="d-flex gap-3">
@@ -85,18 +85,13 @@
 								<div style="width: 80%">
 									<div class="d-flex align-items-center gap-3">
 										<label id="songTrackTime" for="">00:00</label>
-										<input id="songTrack" class="w-100" type="range" min="0" max="100" step="1" value="0" />
+										<input disabled id="songTrack" class="w-100" type="range" min="0" max="100" step="1" value="0" />
 									</div>
 								</div>
 								<div>
-									<div class="btn-group" role="group">
-										<button id="playBtn" onclick="playSong(this)" type="button" class="btn btn-outline-primary hvr-white">
-											<i class="fa-solid fa-play text-primary"></i>
-										</button>
-										<button id="ReplayBtn" onclick="repeatSong()" type="button" class="btn btn-outline-primary hvr-white">
-											<i class="fa-solid fa-rotate-right text-primary"></i>
-										</button>
-									</div>
+									<button disabled id="playBtn" onclick="playSong(this)" type="button" class="btn btn-outline-primary hvr-white">
+										<i class="fa-solid fa-play text-primary"></i>
+									</button>
 								</div>
 							</div>
 						</div>

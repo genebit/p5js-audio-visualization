@@ -30,6 +30,8 @@ window.updateVariablesOnChange = function () {
 
 	$audioSrcCheckbox.on("change", function () {
 		const selectedSrc = $("input[name='audioSource']:checked").val();
+		const $audioFile = $("#audioFile");
+
 		switch (selectedSrc) {
 			case "mic":
 				source = "mic";
@@ -42,11 +44,11 @@ window.updateVariablesOnChange = function () {
 
 				if (microphone) microphone.stop();
 
-				const $audioFile = $("#audioFile");
 				$audioFile.on("change", function (e) {
 					let file = e.target.files[0];
 					handleFile(file);
 				});
+
 				break;
 			default:
 				source = "mic";
@@ -146,14 +148,24 @@ window.startAudioContext = function (element) {
 		audioContextState = "suspended";
 		element.innerHTML = "Start";
 
+		// Enable the play button and replay button
+		// If the audio context is already running
+		$("#playBtn").prop("disabled", true);
+		source = undefined;
+		FPS = 10;
+
+		$("input[name='audioSource']:checked").prop("checked", false);
+
 		getAudioContext().suspend();
 	} else {
 		audioContextState = "running";
 		element.innerHTML = "Stop";
 
+		// Disable the play button and replay button
+		$("#playBtn").prop("disabled", false);
+
 		getAudioContext().resume();
 	}
-
 	setup();
 };
 
@@ -182,12 +194,15 @@ const handleFile = function (file) {
 const startAudioVisualization = function (audio) {
 	fft.setInput(audio);
 
-	// Update the current time of the audio playback
-	let duration = sound.duration();
+	$("#songTrack").attr("max", sound.duration());
 
-	// Convert duration to minutes and seconds
-	let minutes = Math.floor(duration / 60);
-	let seconds = Math.floor(duration % 60);
+	const duration = sound.duration();
+	const minutes = Math.floor(duration / 60)
+		.toString()
+		.padStart(2, "0");
+	const seconds = Math.floor(duration % 60)
+		.toString()
+		.padStart(2, "0");
 
 	$("#songTrackTime").html(`${minutes}:${seconds}`);
 };
@@ -201,16 +216,41 @@ window.playSong = function (element) {
 			iconElement.classList.remove("fa-pause");
 			iconElement.classList.add("fa-play");
 
+			// Pause the audio file
 			sound.pause();
+			$("#songTrack").val(playbackPosition);
+			setSliderStyle("songTrack", "var(--bs-primary)", "var(--bs-accent)", "#d3d3d3");
 		} else {
 			element.classList.add("playing");
 			iconElement.classList.remove("fa-play");
 			iconElement.classList.add("fa-pause");
 
+			const $songTrack = $("#songTrack");
+
+			// Enable the track
+			$songTrack.prop("disabled", false);
+
+			let intervalId;
+
+			incrementTrack(intervalId);
+
+			// For scrubbing
+			$songTrack
+				.on("input", function () {
+					playbackPosition = map($(this).val(), 0, sound.duration(), 0, sound.duration());
+					sound.jump(playbackPosition);
+					setSliderStyle("songTrack", "var(--bs-primary)", "var(--bs-accent)", "#d3d3d3");
+				})
+				.on("mouseup", function () {
+					incrementTrack(intervalId);
+				});
+
+			// Play the audio file
 			sound.play();
 		}
 		return;
 	}
+
 	$("#invalidFileAlert").animate(
 		{
 			right: "1rem",
@@ -218,4 +258,23 @@ window.playSong = function (element) {
 		},
 		"slow"
 	);
+};
+
+const incrementTrack = function (intervalId) {
+	intervalId = setInterval(function () {
+		const currentTime = sound.currentTime();
+		const duration = sound.duration();
+		const progress = map(currentTime, 0, duration, 0, sound.duration());
+
+		$("#songTrack").val(progress);
+
+		if (!sound.isPlaying()) {
+			clearInterval(intervalId);
+			// Sound has finished playing
+			// Return the play icon
+			playbackPosition = 0;
+			$("#playBtn").find("i").removeClass("fa-pause").addClass("fa-play");
+		}
+		setSliderStyle("songTrack", "var(--bs-primary)", "var(--bs-accent)", "#d3d3d3");
+	}, sound.duration());
 };

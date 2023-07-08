@@ -3,6 +3,7 @@ let bands, smoothing, spectrumStyle, spectrumColor, backgroundColor;
 
 // p5js
 let fft, sound, microphone, source, audioContextState;
+let playbackPosition;
 
 let canvas, $sketchContainer;
 let FPS = 10;
