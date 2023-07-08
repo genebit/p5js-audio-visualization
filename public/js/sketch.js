@@ -2,7 +2,7 @@ let $freqBands, $freqBandSmoothing, $freqBackgroundColor, $freqSpectrumColor, $f
 let bands, smoothing, spectrumStyle, spectrumColor, backgroundColor;
 
 // p5js
-let fft, sound, microphone, source;
+let fft, sound, microphone, source, audioContextState;
 
 let canvas, $sketchContainer;
 let FPS = 10;

@@ -43,8 +43,9 @@ window.updateVariablesOnChange = function () {
 				if (microphone) microphone.stop();
 
 				const $audioFile = $("#audioFile");
-				$audioFile.on("change", function () {
+				$audioFile.on("change", function (e) {
 					let file = e.target.files[0];
+					handleFile(file);
 				});
 				break;
 			default:
@@ -138,7 +139,83 @@ window.toggleThemeMode = function () {
 	}
 };
 
-window.start = function () {
-	getAudioContext().resume();
+window.startAudioContext = function (element) {
+	audioContextState = getAudioContext().state;
+
+	if (audioContextState === "running") {
+		audioContextState = "suspended";
+		element.innerHTML = "Start";
+
+		getAudioContext().suspend();
+	} else {
+		audioContextState = "running";
+		element.innerHTML = "Stop";
+
+		getAudioContext().resume();
+	}
+
 	setup();
+};
+
+const handleFile = function (file) {
+	const fileName = file.name;
+	const fileExtension = fileName.split(".").pop().toLowerCase();
+
+	if (fileExtension === "mp3") {
+		if (sound) {
+			sound.stop();
+			sound.disconnect();
+		}
+
+		sound = loadSound(file, startAudioVisualization);
+	} else {
+		$("#invalidFileAlert").animate(
+			{
+				right: "1rem",
+				opacity: 1,
+			},
+			"slow"
+		);
+	}
+};
+
+const startAudioVisualization = function (audio) {
+	fft.setInput(audio);
+
+	// Update the current time of the audio playback
+	let duration = sound.duration();
+
+	// Convert duration to minutes and seconds
+	let minutes = Math.floor(duration / 60);
+	let seconds = Math.floor(duration % 60);
+
+	$("#songTrackTime").html(`${minutes}:${seconds}`);
+};
+
+window.playSong = function (element) {
+	if (sound) {
+		const iconElement = element.querySelector("i");
+
+		if (element.classList.contains("playing")) {
+			element.classList.remove("playing");
+			iconElement.classList.remove("fa-pause");
+			iconElement.classList.add("fa-play");
+
+			sound.pause();
+		} else {
+			element.classList.add("playing");
+			iconElement.classList.remove("fa-play");
+			iconElement.classList.add("fa-pause");
+
+			sound.play();
+		}
+		return;
+	}
+	$("#invalidFileAlert").animate(
+		{
+			right: "1rem",
+			opacity: 1,
+		},
+		"slow"
+	);
 };
