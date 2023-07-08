@@ -1,14 +1,19 @@
 window.updateVariablesOnChange = function () {
 	const $audioSrcCheckbox = $("input[name='audioSource']");
 
+	// Update the freq. bands
 	$freqBands.on("input", function () {
 		const bandSet = [16, 32, 64, 128, 256, 512, 1024];
-		bands = this.value;
-		this.nextElementSibling.innerHTML = bandSet[parseInt(bands)];
+		let rawValue = parseInt(this.value);
+		bands = bandSet[parseInt(rawValue)];
+		this.nextElementSibling.innerHTML = bandSet[parseInt(rawValue)];
+		setup();
 	});
 
 	$freqBandSmoothing.on("input", function () {
-		smoothing = this.value;
+		smoothing = parseFloat(this.value);
+		this.nextElementSibling.innerHTML = smoothing;
+		fft.smoothing = smoothing;
 	});
 
 	$freqSpectrumStyle.on("change", function () {
@@ -25,9 +30,26 @@ window.updateVariablesOnChange = function () {
 
 	$audioSrcCheckbox.on("change", function () {
 		const selectedSrc = $("input[name='audioSource']:checked").val();
-		if (selectedSrc === "mic") {
-		}
-		if (selectedSrc === "file") {
+		switch (selectedSrc) {
+			case "mic":
+				source = "mic";
+
+				if (sound) sound.stop();
+				setup();
+				break;
+			case "file":
+				source = "file";
+
+				if (microphone) microphone.stop();
+
+				const $audioFile = $("#audioFile");
+				$audioFile.on("change", function () {
+					let file = e.target.files[0];
+				});
+				break;
+			default:
+				source = "mic";
+				break;
 		}
 	});
 };
@@ -118,4 +140,5 @@ window.toggleThemeMode = function () {
 
 window.start = function () {
 	getAudioContext().resume();
+	setup();
 };

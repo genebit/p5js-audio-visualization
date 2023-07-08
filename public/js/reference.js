@@ -50,7 +50,7 @@ function setup() {
 	canvas.parent("sketchContainer");
 
 	// FFT Setup
-	fft = new p5.FFT(smoothing, bands);
+	fft = new p5.FFT(smoothing, rawVal);
 
 	if (source === "mic") {
 		microphone = new p5.AudioIn();
@@ -58,10 +58,6 @@ function setup() {
 
 		fft.setInput(microphone);
 	}
-}
-
-function start() {
-	getAudioContext().resume();
 }
 
 function draw() {
@@ -145,8 +141,8 @@ function updateFreqBands() {
 
 	freqBandInput.addEventListener("change", function () {
 		let b = [16, 32, 64, 128, 256, 512, 1024];
-		bands = parseInt(b[this.value]);
-		freqBandsLabel.innerHTML = bands;
+		rawVal = parseInt(b[this.value]);
+		freqBandsLabel.innerHTML = rawVal;
 
 		setup();
 	});
