@@ -7,7 +7,7 @@
 			<img id="themeSliderIcon" src="/public/assets/svg/slider-light-mode.svg" alt="" />
 		</button>
 	</div>
-	<div class="d-flex flex-column gap-3">
+	<div class="d-flex flex-column gap-3 position-relative">
 		<button class="btn btn-primary py-3 px-5">
 			<div class="d-flex justify-content-between align-items-center">
 				<div class="text-start text-white">
@@ -95,9 +95,16 @@
 							</div>
 						</div>
 					</div>
-					<button onclick="startAudioContext(this)" class="btn btn-primary w-100 fw-bold text-white">Start</button>
+					<button onclick="startAudioContext(this)" class="btn btn-primary w-100 fw-bold text-white">Start Audio Context</button>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-between text-dark mt-5">
+		<span>Powered by <b>p5js</b> </span>
+		<div>
+			<span>@GeneBit 2020</span>
+			<a role="button" href="https://github.com/genebit" class="bg-transparent border-0 shadow-none"><i class="fa-brands fa-github"></i></a>
 		</div>
 	</div>
 	<div class="position-absolute bottom-0 w-100" style="z-index: -10">
