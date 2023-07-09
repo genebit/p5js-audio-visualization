@@ -99,7 +99,35 @@ input[type="color"]::-webkit-color-swatch {
 }
 /*#endregion  */
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1366px) {
+	.h1,
+	h1 {
+		font-size: calc(1.35rem + 0.5vw);
+	}
+	.lead {
+		font-size: calc(0.7rem + 0.5vw);
+	}
+	.h3,
+	h3 {
+		font-size: calc(1rem + 0.1vw);
+	}
+	p,
+	label {
+		font-size: 0.7rem;
+	}
+	.card {
+		padding: 0 !important;
+	}
+	.card-body {
+		padding: 0.85rem 2rem !important;
+	}
+	.gap-3 {
+		gap: 0.5rem !important;
+	}
+	.btn-lg {
+		font-size: 0.8rem;
+		padding: 0.35rem 1rem;
+	}
 	.sidebar {
 		width: 50%;
 	}
@@ -108,6 +136,10 @@ input[type="color"]::-webkit-color-swatch {
 @media only screen and (max-width: 600px) {
 	.sidebar {
 		width: 100%;
+	}
+
+	#bottomContainer {
+		flex-direction: column;
 	}
 }
 

@@ -146,7 +146,7 @@ window.startAudioContext = function (element) {
 
 	if (audioContextState === "running") {
 		audioContextState = "suspended";
-		element.innerHTML = "Start";
+		element.innerHTML = "Start Audio Context";
 
 		// Enable the play button and replay button
 		// If the audio context is already running
@@ -159,7 +159,7 @@ window.startAudioContext = function (element) {
 		getAudioContext().suspend();
 	} else {
 		audioContextState = "running";
-		element.innerHTML = "Stop";
+		element.innerHTML = "Stop Audio Context";
 
 		// Disable the play button and replay button
 		$("#playBtn").prop("disabled", false);
