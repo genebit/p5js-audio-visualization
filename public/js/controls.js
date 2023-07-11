@@ -131,6 +131,7 @@ window.toggleThemeMode = function () {
 		$(".text-uppercase, .pSidebar, label").addClass("text-white");
 		$(".border").addClass("border-dark").removeClass("border-primary");
 		$("#toggleBarIcon").css("color", "white");
+		$(".img").attr("src",darkModePath); 
 	} else {
 		$themeSliderIcon.attr("src", lightModePath);
 		$(".sidebar").removeClass("bg-dark").addClass("bg-white");
