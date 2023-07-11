@@ -13,15 +13,15 @@
 							<i id="fullscreenIcon" class="fa-solid fa-up-right-and-down-left-from-center h4"></i>
 						</button>
 					</div>
-					<div class="w-100" style="height: 30%">
+					<div class="w-100 bottom-panel" style="height: 30%">
 						<div class="container-fluid py-5">
 							<div id="bottomContainer" class="d-flex justify-content-between mx-5 px-3">
 								<div class="d-flex gap-5">
-									<img src="/public/assets/svg/logo.svg" alt="" width="100" />
+									<img id="logo" src="/public/assets/svg/logo-light-mode.svg" alt="" width="100" />
 									<div>
-										<h1>GeneBeat: Audio Visualizer</h1>
+										<h1 class="text-white-dm">GeneBeat: Audio Visualizer</h1>
 										<div class="d-flex gap-5">
-											<p class="lead">Customize your colors.</p>
+											<p class="lead text-white-dm">Customize your colors.</p>
 											<div class="d-flex gap-2">
 												<div class="color-input">
 													<input id="backgroundClrPicker" type="color" value="#ffffff" />
@@ -47,8 +47,8 @@
 				</div>
 			</div>
 		</main>
-		<div class="position-absolute bottom-0 w-100" style="z-index: -10">
-			<img class="w-100" src="/public/assets/svg/waves-hor-light-mode.svg" alt="" />
+		<div class="position-absolute bottom-0 w-100" style="pointer-events: none">
+			<img class="w-100 waves-hor-img" src="/public/assets/svg/waves-hor-light-mode.svg" alt="" />
 		</div>
 		<%- include('notification') %>
 	</body>

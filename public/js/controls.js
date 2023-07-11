@@ -121,24 +121,26 @@ window.toggleThemeMode = function () {
 	const $body = $("body");
 	const lightModePath = "/public/assets/svg/slider-light-mode.svg";
 	const darkModePath = "/public/assets/svg/slider-dark-mode.svg";
-
 	$body.toggleClass("dark");
 
 	if ($body.hasClass("dark")) {
 		$themeSliderIcon.attr("src", darkModePath);
-		$(".sidebar").removeClass("bg-white").addClass("bg-dark");
+		$(".sidebar, .bottom-panel").removeClass("bg-white").addClass("bg-dark");
 		$(".card").removeClass("bg-white").addClass("bg-secondary");
-		$(".text-uppercase, .pSidebar, label").addClass("text-white");
-		$(".border").addClass("border-dark").removeClass("border-primary");
+		$(".text-white-dm").addClass("text-white");
 		$("#toggleBarIcon").css("color", "white");
-		$(".img").attr("src",darkModePath); 
+		$(".waves-ver-img").attr("src", "/public/assets/svg/waves-ver-dark-mode.svg");
+		$(".waves-hor-img").attr("src", "/public/assets/svg/waves-hor-dark-mode.svg");
+		$("#logo").attr("src", "/public/assets/svg/logo-dark-mode.svg");
 	} else {
 		$themeSliderIcon.attr("src", lightModePath);
-		$(".sidebar").removeClass("bg-dark").addClass("bg-white");
+		$(".sidebar, .bottom-panel").removeClass("bg-dark").addClass("bg-white");
 		$(".card").removeClass("bg-secondary").addClass("bg-white");
-		$(".text-uppercase, .pSidebar, label").removeClass("text-white");
-		$(".border").removeClass("border-dark").addClass("border-primary");
+		$(".text-white-dm").removeClass("text-white");
 		$("#toggleBarIcon").css("color", "black");
+		$(".waves-ver-img").attr("src", "/public/assets/svg/waves-ver-light-mode.svg");
+		$(".waves-hor-img").attr("src", "/public/assets/svg/waves-hor-light-mode.svg");
+		$("#logo").attr("src", "/public/assets/svg/logo-light-mode.svg");
 	}
 };
 

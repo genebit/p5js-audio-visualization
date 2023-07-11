@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
 	font-family: "Montserrat", sans-serif;
+	transition: all 300ms ease-in-out;
 }
 
 body {
@@ -129,7 +130,7 @@ input[type="color"]::-webkit-color-swatch {
 		padding: 0.35rem 1rem;
 	}
 	.sidebar {
-		width: 50%;
+		width: 40%;
 	}
 }
 
