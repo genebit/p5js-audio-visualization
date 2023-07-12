@@ -8,7 +8,7 @@
 		</button>
 	</div>
 	<div class="d-flex flex-column gap-3 position-relative">
-		<button class="btn btn-primary py-3 px-5">
+		<button class="btn btn-primary py-3 px-5" id="inviteButton">
 			<div class="d-flex justify-content-between align-items-center">
 				<div class="text-start text-white">
 					<h3 class="p-0 m-0 text-white">Invite your friends!</h3>
@@ -19,7 +19,7 @@
 		</button>
 		<div class="card shadow border border-2 border-primary">
 			<div class="card-body p-4">
-				<h3 class="text-uppercase text-accent">Customization <i class="fa-solid fa-palette text-accent"></i></h3>
+				<h3 class="text-uppercase text-primary">Customization <i class="fa-solid fa-palette text-accent"></i></h3>
 				<p class="text-white-dm">Design your own audio spectrum!</p>
 				<div class="row">
 					<div class="col-md-4">
@@ -63,7 +63,7 @@
 		<div class="card shadow border border-2 border-primary">
 			<div class="card-body p-4">
 				<div class="col-md-12">
-					<h3 class="text-uppercase text-accent">Audio Source <i class="fa-solid fa-volume-off text-accent"></i></h3>
+					<h3 class="text-uppercase text-primary">Audio Source <i class="fa-solid fa-volume-off text-accent"></i></h3>
 					<p class="text-white-dm">Pick an audio source to visualize.</p>
 				</div>
 				<div class="col-md-12 d-flex flex-column gap-3">
@@ -95,13 +95,13 @@
 							</div>
 						</div>
 					</div>
-					<button onclick="startAudioContext(this)" class="btn btn-primary w-100 fw-bold text-white">Start Audio Context</button>
+					<button onclick="startAudioContext(this)" class="btn btn-primary w-100 fw-bold text-white">Enable Audio Source</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="d-flex justify-content-between text-dark mt-5">
-		<span class="text-white-dm">Powered by <b class="text-white-dm">p5js</b> </span>
+		<span class="text-white-dm" id="creditText">Powered by <b class="text-white-dm">p5js</b> </span>
 		<div class="text-white-dm">
 			<span class="text-white-dm">@GeneBit 2020</span>
 			<a role="button" href="https://github.com/genebit" class="bg-transparent border-0 shadow-none">

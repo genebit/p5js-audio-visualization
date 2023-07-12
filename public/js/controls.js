@@ -126,7 +126,7 @@ window.toggleThemeMode = function () {
 	if ($body.hasClass("dark")) {
 		$themeSliderIcon.attr("src", darkModePath);
 		$(".sidebar, .bottom-panel").removeClass("bg-white").addClass("bg-dark");
-		$(".card").removeClass("bg-white").addClass("bg-secondary");
+		$(".card").css("background-color", "rgba(55, 60, 63, 0.7)");
 		$(".text-white-dm").addClass("text-white");
 		$("#toggleBarIcon").css("color", "white");
 		$(".waves-ver-img").attr("src", "/public/assets/svg/waves-ver-dark-mode.svg");
@@ -135,7 +135,7 @@ window.toggleThemeMode = function () {
 	} else {
 		$themeSliderIcon.attr("src", lightModePath);
 		$(".sidebar, .bottom-panel").removeClass("bg-dark").addClass("bg-white");
-		$(".card").removeClass("bg-secondary").addClass("bg-white");
+		$(".card").css("background-color", "rgba(256, 256, 256, 0.8)");
 		$(".text-white-dm").removeClass("text-white");
 		$("#toggleBarIcon").css("color", "black");
 		$(".waves-ver-img").attr("src", "/public/assets/svg/waves-ver-light-mode.svg");

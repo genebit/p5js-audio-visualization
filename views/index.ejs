@@ -15,14 +15,14 @@
 					</div>
 					<div class="w-100 bottom-panel" style="height: 30%">
 						<div class="container-fluid py-5">
-							<div id="bottomContainer" class="d-flex justify-content-between mx-5 px-3">
+							<div id="bottomContainer" class="d-flex justify-content-between mx-5 px-3 align-items-center">
 								<div class="d-flex gap-5">
 									<img id="logo" src="/public/assets/svg/logo-light-mode.svg" alt="" width="100" />
 									<div>
 										<h1 class="text-white-dm">GeneBeat: Audio Visualizer</h1>
-										<div class="d-flex gap-5">
-											<p class="lead text-white-dm">Customize your colors.</p>
-											<div class="d-flex gap-2">
+										<div class="color-customize d-flex gap-4">
+											<p class="lead text-white-dm my-auto">Customize your colors.</p>
+											<div class="d-flex gap-3">
 												<div class="color-input">
 													<input id="backgroundClrPicker" type="color" value="#ffffff" />
 													<label for="backgroundClrPicker">Background</label>
@@ -36,7 +36,7 @@
 									</div>
 								</div>
 								<div>
-									<div onclick="toggleSidebar()" class="btn btn-primary btn-lg py-3 fw-bold text-white">
+									<div onclick="toggleSidebar()" class="btn btn-primary btn-lg py-3 fw-bold text-white" id="sidebarToggle">
 										Edit Source
 										<img width="30" src="/public/assets/svg/sidebar-collapse.svg" class="ps-2" alt="" />
 									</div>
