@@ -1,0 +1,49 @@
+/*#region Color Picker */
+input[type="color"] {
+	padding: 0.3rem;
+	border-radius: 5px;
+	margin: 0;
+	border: 2px solid var(--bs-dark);
+	width: 8rem;
+	height: 2rem;
+}
+input[type="color"]::-moz-color-swatch {
+	border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+	border-radius: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+.color-customize {
+	align-items: center;
+}
+
+.color-input {
+	position: relative;
+	width: max-content;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+}
+
+.color-input label:hover,
+.color-input input:hover {
+	cursor: pointer;
+}
+
+.color-input label {
+	font-size: 0.75rem;
+	position: absolute;
+	color: white;
+	text-align: center;
+	mix-blend-mode: difference;
+}
+
+/*#endregion  */

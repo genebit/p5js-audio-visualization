@@ -24,13 +24,20 @@ button:active {
 	}
 }
 
-.btn-outline-primary:hover,
-.btn-outline-primary:focus,
-.btn-outline-success:hover,
-.btn-outline-success:focus,
-.btn-outline-danger:hover,
-.btn-outline-danger:focus {
-	color: white;
+@each $name, $color in $theme-colors {
+	.btn-outline-#{$name},
+	.btn-outline-#{$name} i {
+		color: $color;
+	}
+}
+
+@each $name, $color in $theme-colors {
+	.btn-#{$name}:hover,
+	.btn-#{$name}:focus,
+	.btn-outline-#{$name}:hover i,
+	.btn-outline-#{$name}:focus i {
+		color: white;
+	}
 }
 
 @each $name, $color in $theme-colors {

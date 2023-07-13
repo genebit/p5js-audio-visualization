@@ -1,0 +1,52 @@
+@media only screen and (max-width: 1366px) {
+	*:not(h1, h2, h3, h4, h5, h6, .fa-solid) {
+		font-size: 0.885rem;
+	}
+}
+
+/* make the bottom-panel responsive */
+@media only screen and (max-width: 1000px) {
+	.canvas-container,
+	.bottom-panel {
+		height: 50% !important;
+	}
+	.bottom-panel .bottom-container,
+	.bottom-panel .color-customize {
+		flex-direction: column;
+	}
+	.bottom-container {
+		padding: 0 !important;
+		margin: 0 !important;
+		gap: 1rem;
+	}
+	#logo {
+		width: 20% !important;
+	}
+}
+
+@media only screen and (max-width: 986px) {
+	.sidebar.active {
+		width: 60% !important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.sidebar.active {
+		width: 70% !important;
+	}
+	.bottom-header {
+		flex-direction: column;
+	}
+}
+
+@media only screen and (max-width: 646px) {
+	.sidebar.active {
+		width: 100% !important;
+	}
+	#inviteButton {
+		padding: 0.5rem 1rem !important;
+	}
+	#inviteButton h3 {
+		font-size: 1rem;
+	}
+}
