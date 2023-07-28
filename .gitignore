@@ -1,3 +1,4 @@
 test/
 public/assets/audio/
 node_modules/
+.env

@@ -3,6 +3,9 @@
 	"version": "1.0.0",
 	"description": "An audio visualization web application built using p5js.",
 	"main": "./app.js",
+	"engine": {
+		"node": "18.x"
+	},
 	"scripts": {
 		"dev": "nodemon ./app.js",
 		"start": "node ./app.js",
